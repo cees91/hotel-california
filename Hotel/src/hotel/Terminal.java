@@ -38,7 +38,7 @@ public class Terminal {
             case "2":
                 // check booking
                 // current = Booking.showBooking();
-                current ="test";
+                current = "test";
                 break;
             case "2,1":
                 break;
