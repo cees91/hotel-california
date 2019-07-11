@@ -3,35 +3,32 @@ package hotel.bookings;
 import hotel.Rooms;
 import hotel.User;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
 public class Booking {
 
-
-    String bookingId;
+    private String bookingId;
 
     // variables regarding payment
-    boolean bookingPayed;
-    double price;
-    double amountPayed;
+    private boolean bookingPayed;
+    private double price;
+    private double amountPayed;
 
     // the user that booked the room(s)
-    User headBooker;
+    private User headBooker;
 
     // list of rooms that are booked
-    Rooms[] bookedRooms;
+    private Rooms[] bookedRooms;
 
     // enum variables
-    bookingStatus status;
-    paymentMethod method;
+    private bookingStatus status;
+    private paymentMethod method;
 
     // dates
-    Date startDate;
-    Date endDate;
-    Date bookingDate;
+    private Date startDate;
+    private Date endDate;
+    private Date bookingDate;
 
     Booking(Rooms[] roomsBooked, User booker, Date start, Date end, Date booked) {
         this.bookingId = UUID.randomUUID().toString();
@@ -43,7 +40,7 @@ public class Booking {
     }
 
     public boolean isBookingPayed() {
-        return bookingPayed;
+        return this.bookingPayed;
     }
     public void setBookingPayed(boolean bookingPayed) {
         this.bookingPayed = bookingPayed;
@@ -71,10 +68,38 @@ public class Booking {
     }
 
     public double getAmountPayed() {
-        return amountPayed;
+        return this.amountPayed;
     }
     public void setAmountPayed(double amountPayed) {
         this.amountPayed = amountPayed;
+    }
+
+    public Rooms[] getBookedRooms() {
+        return this.bookedRooms;
+    }
+    public void setBookedRooms(Rooms[] bookedRooms) {
+        this.bookedRooms = bookedRooms;
+    }
+
+    public Date getStartDate() {
+        return this.startDate;
+    }
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return this.endDate;
+    }
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public Date getBookingDate() {
+        return this.bookingDate;
+    }
+    public void setBookingDate(Date bookingDate) {
+        this.bookingDate = bookingDate;
     }
 
     enum bookingStatus {
