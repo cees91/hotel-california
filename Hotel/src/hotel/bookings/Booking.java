@@ -30,13 +30,13 @@ public class Booking {
     private Date endDate;
     private Date bookingDate;
 
-    Booking(Rooms[] roomsBooked, User booker, Date start, Date end, Date booked) {
+    Booking(Rooms[] bookedRooms, User headBooker, Date startDate, Date endDate, Date bookingDate) {
         this.bookingId = UUID.randomUUID().toString();
-        this.bookedRooms = roomsBooked;
-        this.headBooker = booker;
-        this.startDate = start;
-        this.endDate = end;
-        this.bookingDate = booked;
+        this.bookedRooms = bookedRooms;
+        this.headBooker = headBooker;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.bookingDate = bookingDate;
     }
 
     public boolean isBookingPayed() {
@@ -44,6 +44,20 @@ public class Booking {
     }
     public void setBookingPayed(boolean bookingPayed) {
         this.bookingPayed = bookingPayed;
+    }
+
+    public String getBookingId() {
+        return bookingId;
+    }
+    public void setBookingId(String bookingId) {
+        this.bookingId = bookingId;
+    }
+
+    public User getHeadBooker() {
+        return this.headBooker;
+    }
+    public void setHeadBooker(User headBooker) {
+        this.headBooker = headBooker;
     }
 
     public double getPrice() {
