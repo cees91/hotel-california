@@ -1,9 +1,10 @@
 package hotel;
 
 public enum RoomType {
-
     Single,
-    DoubleBed,
+    Double,
     TwoDouble,
     Penthouse
+
+
 }

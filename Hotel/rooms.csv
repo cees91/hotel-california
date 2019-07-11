@@ -1,0 +1,76 @@
+1;Single;1;0;Single ;
+1;Single;1;0;Single ;
+1;Single;1;0;Single ;
+1;Single;1;1;Single ;
+1;Single;1;1;Single ;
+1;Single;1;1;Single ;
+1;Single;1;1;Single ;
+1;Single ;1;0;Single ;yes
+1;Single ;1;0;Single ;yes
+1;Double ;2;0;DoubleBed;yes
+1;Double ;2;0;DoubleBed ;
+1;Double ;2;0;DoubleBed ;
+1;Double ;2;0;TwoSingle;
+1;Double ;2;0;TwoSingle;
+1;Double ;2;1;DoubleBed ;
+1;Double ;2;1;DoubleBed ;
+1;Double ;2;2;DoubleBed ;
+1;Double ;2;2;DoubleBed ;
+1;TwoDouble;4;2;TwoDoubleOneSingleOneBaby;
+2;Single;1;0;Single ;
+2;Single;1;0;Single ;
+2;Single;1;0;Single ;
+2;Single;1;1;Single ;
+2;Single;1;1;Single ;
+2;Single;1;1;Single ;
+2;Single;1;1;Single ;
+2;Single ;1;0;Single ;yes
+2;Single ;1;0;Single ;yes
+2;Double ;2;0;DoubleBed ;yes
+2;Double ;2;0;DoubleBed ;
+2;Double ;2;0;DoubleBed ;
+2;Double ;2;0;TwoSingle;
+2;Double ;2;0;TwoSingle;
+2;Double ;2;1;DoubleBed ;
+2;Double ;2;1;DoubleBed ;
+2;Double ;2;2;DoubleBed ;
+2;TwoDouble ;4;2;TwoDoubleOneSingleOneBaby;
+2;Double ;2;2;DoubleBed ;
+3;Single;1;0;Single ;
+3;Single;1;0;Single ;
+3;Single;1;0;Single ;
+3;Single;1;1;Single ;
+3;Single;1;1;Single ;
+3;Single;1;1;Single ;
+3;Single;1;1;Single ;
+3;Single ;1;0;Single ;yes
+3;Single ;1;0;Single ;yes
+3;Double ;2;0;DoubleBed ;yes
+3;Double ;2;0;DoubleBed ;
+3;Double ;2;0;DoubleBed ;
+3;Double ;2;0;TwoSingle;
+3;Double ;2;0;TwoSingle;
+3;TwoDouble ;4;2;TwoDoubleOneSingleOneBaby;
+3;Double ;2;1;DoubleBed ;
+3;Double ;2;2;DoubleBed ;
+3;Double ;2;2;DoubleBed ;
+3;Double ;2;2;DoubleBed ;
+4;Single;1;0;Single ;
+4;Single;1;0;Single ;
+4;Single;1;0;Single ;
+4;Single;1;1;Single ;
+4;Single;1;1;Single ;
+4;Single;1;1;Single ;
+4;Single;1;1;Single ;
+4;Single ;1;0;Single ;yes
+4;Single ;1;0;Single ;yes
+4;Double ;2;0;DoubleBed ;yes
+4;Double ;2;0;DoubleBed ;
+4;Double ;2;0;DoubleBed ;
+4;Double ;2;0;TwoSingle;
+4;Double ;2;0;TwoSingle;
+4;Double ;2;1;DoubleBed ;
+4;Double ;2;1;DoubleBed ;
+4;Double ;2;2;DoubleBed ;
+4;Penthouse;8;2;TwoDoubleFourSIngleTwoBaby;
+4;Penthouse;8;2;TwoDoubleFourSIngleTwoBaby;
