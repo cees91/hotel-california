@@ -9,9 +9,8 @@ public class Rooms {
     int children;
     BedType bedType;
     boolean isDisabled;
-
-    double price;
     boolean isAvailable;
+    double price;
 
     public Rooms(int roomNumber, int floor, RoomType type, int adults, int children, BedType bedType, boolean isDisabled) {
         this.roomNumber = roomNumber;
@@ -21,5 +20,6 @@ public class Rooms {
         this.children = children;
         this.bedType = bedType;
         this.isDisabled = isDisabled;
+        this.isAvailable = true;
     }
 }

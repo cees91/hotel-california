@@ -7,19 +7,29 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
 
 public class Hotel {
     Rooms[] rooms;
     public Hotel (){
         this.rooms = readCSVFile();
+
+
     }
     private Rooms[] readCSVFile(){
-        Rooms[] csvRooms = new Rooms [100];
         try  {
             BufferedReader br = new BufferedReader(new FileReader("rooms.csv"));
             String line;
+
             int i = 0;
             try {
+                Path path = Paths.get("rooms.csv");
+                long lineCount = Files.lines(path).count();
+                int lines = (int) lineCount;
+                Rooms[] csvRooms = new Rooms [lines];
                 int roomNumber;
                 RoomType roomType;
                 int adults;
@@ -29,7 +39,7 @@ public class Hotel {
                 int children;
                 while ((line = br.readLine()) != null) {
                     String[] values = line.split(";");
-                    roomNumber = i;
+                    roomNumber = i+1;
                     floor = Integer.parseInt(values[0]);
                     roomType = RoomType.valueOf(values[1].trim());
                     adults = Integer.parseInt(values[2]);
@@ -39,35 +49,40 @@ public class Hotel {
                     csvRooms[i] = new Rooms(roomNumber, floor, roomType, adults, children, bed, disabled);
                     i++;
                 }
+                return csvRooms;
+
             } catch(IOException e){
                 System.out.println(e);
             }
         } catch(FileNotFoundException e){
             System.out.println(e);
         }
-        return csvRooms;
+        return null;
     };
 
-    public void stringify() {
-        for(Rooms room: this.rooms)
-        {
-            System.out.println("room: " + room.roomNumber +", type: "+ room.bedType);
+    public String showRoomTypes(){
+        String types = "";
+        int i = 1;
+        for(RoomType currentType: RoomType.values()){
+                types += i +": "+ currentType.name() + "\n";
+                i++;
         }
+        types += i + ": Go back \n";
+        types += "q: Quit applicaiton";
+        return types;
     }
-//    public Array showRoomTypes(){
-//
-//    }
-//    public String showRooms(EType type){
-//        String roomList = "";
-//        int i = 1;
-//        for(Rooms currentRoom: rooms){
-//            if(currentRoom.isAvailable && currentRoom.type == type){
-//                roomList += i + ": " + currentRoom.roomNumber + ". Price: " + currentRoom.price + ".\n";
-//                i++;
-//            }
-//        }
-//        roomList += i + ": Go back. \n";
-//        roomList += "q: Quit application.";
-//        return roomList;
-//    }
+    public String showRooms(RoomType type){
+        String roomList = "";
+        int i = 1;
+        for(Rooms currentRoom: this.rooms){
+            if(currentRoom.isAvailable && currentRoom.type == type){
+                System.out.println(currentRoom.type);
+                roomList += i + ": " + currentRoom.roomNumber + ". Price: " + currentRoom.price + ".\n";
+                i++;
+            }
+        }
+        roomList += i + ": Go back. \n";
+        roomList += "q: Quit application.";
+        return roomList;
+    }
 }

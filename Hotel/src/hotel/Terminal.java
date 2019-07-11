@@ -4,8 +4,9 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Terminal {
-    public void startTerminal(String previousInput, String currentScreen){
+    public void startTerminal(String previousInput, String currentScreen, Hotel hotel){
         Scanner terminalInput = new Scanner(System.in);
+        System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         System.out.println(currentScreen);
         String newInput = terminalInput.nextLine();
         String input = previousInput != null? previousInput +","+ newInput:  newInput;
@@ -14,26 +15,36 @@ public class Terminal {
             System.out.println("Exiting hotel app");
         } else{
             System.out.println(input);
-            String current = processInput(input);
-            startTerminal(input, current);
+
+
+
+            String current = processInput(input,hotel);
+            startTerminal(input, current, hotel);
         }
     }
 
-    private String processInput(String input){
+    private String processInput(String input, Hotel hotel){
         String current ="";
+
         switch (input){
             case "1":
                 // check rooms
-//                current = Hotel.showRoomTypes();
+                current = hotel.showRoomTypes();
                 break;
             case "1,1":
                 // current = Hotel.showStandardRooms();
+                RoomType type = RoomType.Single;
+                current = hotel.showRooms(type);
                 break;
             case "1,2":
                 // current = Hotel.showDeluxeRooms();
+                RoomType type2 = RoomType.Double;
+                current = hotel.showRooms(type2);
                 break;
             case "1,3":
                 // current = Hotel.showPresidentialRooms();
+                RoomType type3 = RoomType.TwoDouble;
+                current = hotel.showRooms(type3);
                 break;
             case "2":
                 // check booking
