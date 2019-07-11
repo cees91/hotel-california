@@ -1,7 +1,5 @@
 package hotel;
 
-import com.sun.xml.internal.ws.commons.xmlutil.Converter;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
