@@ -9,16 +9,18 @@ import java.util.Scanner;
 
 public class BookingController {
     Booking booking;
+
     public String specifyGuestsAndDates() {
 
         Scanner terminalInput = new Scanner(System.in);
-        String guests = specifyGuests(terminalInput);
+        int guests;
         Date startDate;
         Date endDate;
         try {
+            guests = specifyGuests(terminalInput);
             startDate = setFromDate(terminalInput);
             endDate = setEndDate(terminalInput);
-        }catch(Exception error){
+        } catch (Exception error) {
             System.out.println("Incorrect date format: " + error + ". Enter 'b' to go back.");
             String date = terminalInput.nextLine();
 
@@ -29,11 +31,13 @@ public class BookingController {
 
     }
 
-    private String specifyGuests(Scanner terminal) {
+    private int specifyGuests(Scanner terminal) {
         System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         System.out.println("Please enter the amount of guests you wish to stay with: ");
         String guests = terminal.nextLine();
-        return guests;
+        int guestNumber = Integer.parseInt(guests);
+        return guestNumber;
+
     }
 
     private Date setFromDate(Scanner terminal) throws Exception {
