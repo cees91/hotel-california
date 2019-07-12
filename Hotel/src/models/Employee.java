@@ -1,4 +1,6 @@
-package hotel;
+package models;
+
+import models.User;
 
 public class Employee extends User {
 

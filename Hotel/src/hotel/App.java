@@ -1,6 +1,9 @@
 package hotel;
 
 
+import controllers.Hotel;
+import utils.Terminal;
+
 public class App {
     public static void main(String[] args) {
         Terminal console = new Terminal();

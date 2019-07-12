@@ -1,15 +1,18 @@
-package hotel;
+package utils;
 
-import java.util.Arrays;
-import java.util.HashMap;
+import controllers.Hotel;
+import Enums.RoomType;
+
 import java.util.Scanner;
 
 public class Terminal {
+
     private final String welcomeScreen = "Welcome to the hotel, please select an option: \n" +
             "1: Look for rooms. \n" +
             "2: Check booking. \n" +
             "3: Log in. \n" +
             "4: Contact information. \n";
+
     public void startTerminal(String previousInput, String currentScreen, Hotel hotel){
         Scanner terminalInput = new Scanner(System.in);
         System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
@@ -48,17 +51,14 @@ public class Terminal {
                 current = hotel.showRoomTypes();
                 break;
             case "1,1":
-                // current = Hotel.showStandardRooms();
                 RoomType type = RoomType.Single;
                 current = hotel.checkRoomAvailability(type);
                 break;
             case "1,2":
-                // current = Hotel.showDeluxeRooms();
                 RoomType type2 = RoomType.Double;
                 current = hotel.checkRoomAvailability(type2);
                 break;
             case "1,3":
-                // current = Hotel.showPresidentialRooms();
                 RoomType type3 = RoomType.TwoDouble;
                 current = hotel.checkRoomAvailability(type3);
                 break;
@@ -78,16 +78,9 @@ public class Terminal {
                 break;
 
         }
+        current += "b: Go back \n";
+        current += "q: Quit application";
         return current;
     }
-    private String getCurrentScreen(String input){
-        String firstScreen = "1: Look for rooms.";
-        if(input.equals("1")){
-            firstScreen = "What kind of room would you like? \n"+
-                    "1: Standard \n"+
-                    "2: Deluxe \n" +
-                    "3: Presidential";
-        }
-        return firstScreen;
-    }
+
 }

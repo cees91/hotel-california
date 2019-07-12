@@ -1,4 +1,7 @@
-package hotel;
+package models;
+
+import Enums.BedType;
+import Enums.RoomType;
 
 public class Rooms {
 
