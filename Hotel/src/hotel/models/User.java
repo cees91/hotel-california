@@ -1,4 +1,4 @@
-package models;
+package hotel.models;
 
 public class User {
 }

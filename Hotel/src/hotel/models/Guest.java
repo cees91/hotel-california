@@ -1,6 +1,4 @@
-package models;
-
-import models.User;
+package hotel.models;
 
 public class Guest extends User {
 

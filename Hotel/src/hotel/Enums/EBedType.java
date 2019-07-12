@@ -1,4 +1,4 @@
-package Enums;
+package hotel.Enums;
 
 public enum EBedType {
     Single,

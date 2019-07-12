@@ -1,7 +1,7 @@
-package utils;
+package hotel.utils;
 
-import controllers.RoomController;
-import Enums.ERoomType;
+import hotel.controllers.RoomController;
+import hotel.Enums.ERoomType;
 
 import java.util.Scanner;
 
@@ -13,41 +13,46 @@ public class Terminal {
             "3: Log in. \n" +
             "4: Contact information. \n";
 
-    public void startTerminal(String previousInput, String currentScreen, RoomController hotel){
+    public void startTerminal(String previousInput, String currentScreen, RoomController hotel) {
         Scanner terminalInput = new Scanner(System.in);
         System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         System.out.println(currentScreen);
         String newInput = terminalInput.nextLine();
-        String input = previousInput != null? previousInput +","+ newInput:  newInput;
-        checkKeyChoice(input,newInput, currentScreen, hotel);
+        String input = previousInput != null ? previousInput + "," + newInput : newInput;
+        checkKeyChoice(input, newInput, currentScreen, hotel);
+
     }
-    private void checkKeyChoice(String input,String newInput, String currentScreen, RoomController hotel){
-        if(newInput.equals("q")) {
+
+    private void checkKeyChoice(String input, String newInput, String currentScreen, RoomController hotel) {
+        if (newInput.equals("q")) {
             System.out.println("Exiting hotel app");
-        } else if (newInput.equals("b")){
-            goBack(input, currentScreen, hotel);
-        } else{
-            String current = processInput(input,hotel);
+        } else if (newInput.equals("b")) {
+            goOneScreenBack(input, hotel);
+        } else {
+            String current = processInput(input, hotel);
             startTerminal(input, current, hotel);
         }
     }
-    private void goBack(String input, String currentScreen, RoomController hotel){
+
+    private void goOneScreenBack(String input, RoomController hotel) {
         String[] tempInput = input.split(",");
-        String removeChar = tempInput[tempInput.length-2];
+        String removeChar = tempInput[tempInput.length - 2];
         input = input.replaceAll("\\,?" + removeChar + ",b", "");
 
-        if(input.length() < 1) {
+        if (input.length() < 1) {
             startTerminal(null, this.welcomeScreen, hotel);
         } else {
             String current = processInput(input, hotel);
             startTerminal(input, current, hotel);
         }
     }
-    private String processInput(String input, RoomController hotel){
+
+    private String processInput(String input, RoomController hotel) {
         String current = "";
-        switch (input){
+        switch (input) {
             case "1":
-                // check rooms
+                // specify date and number of people
+                // needed for later steps -> see room availability
                 current = hotel.showRoomTypes();
                 break;
             case "1,1":

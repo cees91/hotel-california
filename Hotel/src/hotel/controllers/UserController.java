@@ -1,4 +1,4 @@
-package controllers;
+package hotel.controllers;
 
 public class UserController {
 }

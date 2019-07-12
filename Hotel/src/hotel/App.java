@@ -1,8 +1,8 @@
 package hotel;
 
 
-import controllers.RoomController;
-import utils.Terminal;
+import hotel.controllers.RoomController;
+import hotel.utils.Terminal;
 
 public class App {
     public static void main(String[] args) {

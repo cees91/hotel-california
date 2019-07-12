@@ -1,8 +1,8 @@
-package utils;
+package hotel.utils;
 
-import Enums.EBedType;
-import Enums.ERoomType;
-import models.Rooms;
+import hotel.Enums.EBedType;
+import hotel.Enums.ERoomType;
+import hotel.models.Rooms;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
