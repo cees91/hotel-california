@@ -16,6 +16,7 @@ public class Booking {
 
     // the user that booked the room(s)
     private User headBooker;
+    private int numberOfGuests;
 
     // list of rooms that are booked
     private Rooms[] bookedRooms;
@@ -35,9 +36,19 @@ public class Booking {
         this.bookingDate = new Date(); // creating a Date without specifying a date gives it the date of today
     }
 
-    // constructor with user and start and end date
-    Booking(User headBooker, Date startDate, Date endDate) {
+    // constructor with amount of guests and start and end date
+    Booking(int numberOfGuests, Date startDate, Date endDate) {
         this.bookingId = UUID.randomUUID().toString();
+        this.numberOfGuests = numberOfGuests;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.bookingDate = new Date();
+    }
+
+    // constructor with user, amount of guests and start and end date
+    Booking(User headBooker, int numberOfGuests, Date startDate, Date endDate) {
+        this.bookingId = UUID.randomUUID().toString();
+        this.numberOfGuests = numberOfGuests;
         this.headBooker = headBooker;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -45,10 +56,11 @@ public class Booking {
     }
 
     // full constructor
-    Booking(Rooms[] bookedRooms, User headBooker, Date startDate, Date endDate) {
+    Booking(Rooms[] bookedRooms, User headBooker, int numberOfGuests, Date startDate, Date endDate) {
         this.bookingId = UUID.randomUUID().toString();
         this.bookedRooms = bookedRooms;
         this.headBooker = headBooker;
+        this.numberOfGuests = numberOfGuests;
         this.startDate = startDate;
         this.endDate = endDate;
         this.bookingDate = new Date();
