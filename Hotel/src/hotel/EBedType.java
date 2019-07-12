@@ -1,6 +1,6 @@
 package hotel;
 
-public enum BedType {
+public enum EBedType {
     Single,
     DoubleBed,
     TwoSingle,
