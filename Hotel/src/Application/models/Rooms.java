@@ -1,7 +1,7 @@
-package hotel.models;
+package Application.models;
 
-import hotel.Enums.EBedType;
-import hotel.Enums.ERoomType;
+import Application.Enums.EBedType;
+import Application.Enums.ERoomType;
 
 public class Rooms {
 

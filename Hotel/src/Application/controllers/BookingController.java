@@ -1,4 +1,4 @@
-package hotel.controllers;
+package Application.controllers;
 
 public class BookingController {
 }

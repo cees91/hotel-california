@@ -1,4 +1,4 @@
-package hotel.models;
+package Application.models;
 
 import java.util.Date;
 import java.util.UUID;

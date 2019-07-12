@@ -1,13 +1,13 @@
-package hotel.utils;
+package Application.utils;
 
-import hotel.controllers.RoomController;
-import hotel.Enums.ERoomType;
+import Application.controllers.RoomController;
+import Application.Enums.ERoomType;
 
 import java.util.Scanner;
 
 public class Terminal {
 
-    private final String welcomeScreen = "Welcome to the hotel, please select an option: \n" +
+    private final String welcomeScreen = "Welcome to the Application, please select an option: \n" +
             "1: Look for rooms. \n" +
             "2: Check booking. \n" +
             "3: Log in. \n" +
@@ -25,7 +25,7 @@ public class Terminal {
 
     private void checkKeyChoice(String input, String newInput, String currentScreen, RoomController hotel) {
         if (newInput.equals("q")) {
-            System.out.println("Exiting hotel app");
+            System.out.println("Exiting Application app");
         } else if (newInput.equals("b")) {
             goOneScreenBack(input, hotel);
         } else {

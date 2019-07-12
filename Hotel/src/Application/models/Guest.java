@@ -1,4 +1,4 @@
-package hotel.models;
+package Application.models;
 
 public class Guest extends User {
 

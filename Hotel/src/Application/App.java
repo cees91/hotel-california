@@ -1,14 +1,14 @@
-package hotel;
+package Application;
 
 
-import hotel.controllers.RoomController;
-import hotel.utils.Terminal;
+import Application.controllers.RoomController;
+import Application.utils.Terminal;
 
 public class App {
     public static void main(String[] args) {
         Terminal console = new Terminal();
         RoomController hotel = new RoomController();
-        String welcomeScreen = "Welcome to the hotel, please select an option: \n" +
+        String welcomeScreen = "Welcome to the Application, please select an option: \n" +
                 "1: Look for rooms. \n" +
                 "2: Check booking. \n" +
                 "3: Log in. \n" +

@@ -1,8 +1,8 @@
-package hotel.controllers;
+package Application.controllers;
 
-import hotel.Enums.ERoomType;
-import hotel.models.Rooms;
-import hotel.utils.CSVReader;
+import Application.Enums.ERoomType;
+import Application.models.Rooms;
+import Application.utils.CSVReader;
 
 public class RoomController {
     Rooms[] rooms;
