@@ -1,7 +1,7 @@
 package utils;
 
-import controllers.Hotel;
-import Enums.RoomType;
+import controllers.RoomController;
+import Enums.ERoomType;
 
 import java.util.Scanner;
 
@@ -13,7 +13,7 @@ public class Terminal {
             "3: Log in. \n" +
             "4: Contact information. \n";
 
-    public void startTerminal(String previousInput, String currentScreen, Hotel hotel){
+    public void startTerminal(String previousInput, String currentScreen, RoomController hotel){
         Scanner terminalInput = new Scanner(System.in);
         System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         System.out.println(currentScreen);
@@ -21,7 +21,7 @@ public class Terminal {
         String input = previousInput != null? previousInput +","+ newInput:  newInput;
         checkKeyChoice(input,newInput, currentScreen, hotel);
     }
-    private void checkKeyChoice(String input,String newInput, String currentScreen, Hotel hotel){
+    private void checkKeyChoice(String input,String newInput, String currentScreen, RoomController hotel){
         if(newInput.equals("q")) {
             System.out.println("Exiting hotel app");
         } else if (newInput.equals("b")){
@@ -31,7 +31,7 @@ public class Terminal {
             startTerminal(input, current, hotel);
         }
     }
-    private void goBack(String input, String currentScreen, Hotel hotel){
+    private void goBack(String input, String currentScreen, RoomController hotel){
         String[] tempInput = input.split(",");
         String removeChar = tempInput[tempInput.length-2];
         input = input.replaceAll("\\,?" + removeChar + ",b", "");
@@ -43,7 +43,7 @@ public class Terminal {
             startTerminal(input, current, hotel);
         }
     }
-    private String processInput(String input, Hotel hotel){
+    private String processInput(String input, RoomController hotel){
         String current = "";
         switch (input){
             case "1":
@@ -51,15 +51,15 @@ public class Terminal {
                 current = hotel.showRoomTypes();
                 break;
             case "1,1":
-                RoomType type = RoomType.Single;
+                ERoomType type = ERoomType.Single;
                 current = hotel.checkRoomAvailability(type);
                 break;
             case "1,2":
-                RoomType type2 = RoomType.Double;
+                ERoomType type2 = ERoomType.Double;
                 current = hotel.checkRoomAvailability(type2);
                 break;
             case "1,3":
-                RoomType type3 = RoomType.TwoDouble;
+                ERoomType type3 = ERoomType.TwoDouble;
                 current = hotel.checkRoomAvailability(type3);
                 break;
             case "2":

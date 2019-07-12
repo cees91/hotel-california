@@ -1,6 +1,6 @@
 package Enums;
 
-public enum BedType {
+public enum EBedType {
     Single,
     DoubleBed,
     TwoSingle,

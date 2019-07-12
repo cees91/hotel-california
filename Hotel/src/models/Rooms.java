@@ -1,21 +1,21 @@
 package models;
 
-import Enums.BedType;
-import Enums.RoomType;
+import Enums.EBedType;
+import Enums.ERoomType;
 
 public class Rooms {
 
     int roomNumber;
     int floor;
-    RoomType type;
+    ERoomType type;
     int adults;
     int children;
-    BedType bedType;
+    EBedType bedType;
     boolean isDisabled;
     boolean isAvailable;
     double price;
 
-    public Rooms(int roomNumber, int floor, RoomType type, int adults, int children, BedType bedType, boolean isDisabled) {
+    public Rooms(int roomNumber, int floor, ERoomType type, int adults, int children, EBedType bedType, boolean isDisabled) {
         this.roomNumber = roomNumber;
         this.floor = floor;
         this.type = type;
@@ -42,11 +42,11 @@ public class Rooms {
         this.floor = floor;
     }
 
-    public RoomType getType() {
+    public ERoomType getType() {
         return type;
     }
 
-    public void setType(RoomType type) {
+    public void setType(ERoomType type) {
         this.type = type;
     }
 
@@ -66,11 +66,11 @@ public class Rooms {
         this.children = children;
     }
 
-    public BedType getBedType() {
+    public EBedType getBedType() {
         return bedType;
     }
 
-    public void setBedType(BedType bedType) {
+    public void setBedType(EBedType bedType) {
         this.bedType = bedType;
     }
 

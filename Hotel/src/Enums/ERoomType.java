@@ -1,6 +1,6 @@
 package Enums;
 
-public enum RoomType {
+public enum ERoomType {
     Single,
     Double,
     TwoDouble,

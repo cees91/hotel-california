@@ -1,12 +1,12 @@
 package controllers;
 
-import Enums.RoomType;
+import Enums.ERoomType;
 import models.Rooms;
 import utils.CSVReader;
 
-public class Hotel {
+public class RoomController {
     Rooms[] rooms;
-    public Hotel (){
+    public RoomController(){
         this.rooms = readCSVFile();
     }
 
@@ -19,7 +19,7 @@ public class Hotel {
     public String showRoomTypes(){
         String types = "";
         int i = 1;
-        for(RoomType currentType: RoomType.values()){
+        for(ERoomType currentType: ERoomType.values()){
                 types += i +": "+ currentType.name() + "\n";
                 i++;
         }
@@ -27,7 +27,7 @@ public class Hotel {
         return types;
     }
 
-    public String checkRoomAvailability(RoomType type){
+    public String checkRoomAvailability(ERoomType type){
         String roomList = "";
         int i = 1;
         for(Rooms currentRoom: this.rooms){
