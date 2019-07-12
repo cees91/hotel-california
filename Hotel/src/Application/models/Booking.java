@@ -119,14 +119,7 @@ public class Booking {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
-
-    public Date getBookingDate() {
-        return this.bookingDate;
-    }
-    public void setBookingDate(Date bookingDate) {
-        this.bookingDate = bookingDate;
-    }
-
+    
     enum bookingStatus {
         received,
         //processed, // do we really need this?
