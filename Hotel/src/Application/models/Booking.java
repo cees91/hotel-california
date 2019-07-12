@@ -2,6 +2,8 @@ package Application.models;
 
 import java.util.Date;
 import java.util.UUID;
+import Application.Enums.EBookingStatus;
+import Application.Enums.EPaymentMethod;
 
 public class Booking {
 
@@ -19,8 +21,8 @@ public class Booking {
     private Rooms[] bookedRooms;
 
     // enum variables
-    private bookingStatus status;
-    private paymentMethod method;
+    private EBookingStatus bookingStatus;
+    private EPaymentMethod paymentMethod;
 
     // dates
     private Date startDate;
@@ -33,6 +35,7 @@ public class Booking {
         this.bookingDate = new Date(); // creating a Date without specifying a date gives it the date of today
     }
 
+    // constructor with user and start and end date
     Booking(User headBooker, Date startDate, Date endDate) {
         this.bookingId = UUID.randomUUID().toString();
         this.headBooker = headBooker;
@@ -41,6 +44,7 @@ public class Booking {
         this.bookingDate = new Date();
     }
 
+    // full constructor
     Booking(Rooms[] bookedRooms, User headBooker, Date startDate, Date endDate) {
         this.bookingId = UUID.randomUUID().toString();
         this.bookedRooms = bookedRooms;
@@ -78,20 +82,6 @@ public class Booking {
         this.price = price;
     }
 
-    public bookingStatus getBookingStatus() {
-        return this.status;
-    }
-    public void setBookingStatus(bookingStatus stat) {
-        this.status = stat;
-    }
-
-    public paymentMethod getPaymentMethod() {
-        return this.method;
-    }
-    public void setpaymentMethod(paymentMethod method) {
-        this.method = method;
-    }
-
     public double getAmountPayed() {
         return this.amountPayed;
     }
@@ -119,19 +109,22 @@ public class Booking {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
-    
-    enum bookingStatus {
-        received,
-        //processed, // do we really need this?
-        accepted,
-        declined
+
+    public EBookingStatus getBookingStatus() {
+        return this.bookingStatus;
+    }
+    public void setBookingStatus(EBookingStatus bookingStatus) {
+        this.bookingStatus = bookingStatus;
     }
 
-    enum paymentMethod {
-        cash,
-        creditcard,
-        debitcard,
-        alipay
+    public EPaymentMethod getPaymentMethod() {
+        return this.paymentMethod;
+    }
+    public void setPaymentMethod(EPaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 
+    public Date getBookingDate() {
+        return this.bookingDate;
+    }
 }
