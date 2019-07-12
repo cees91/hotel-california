@@ -1,7 +1,7 @@
-package hotel.bookings;
+package models;
 
-import hotel.Rooms;
-import hotel.User;
+import models.Rooms;
+import models.User;
 
 import java.util.Date;
 import java.util.UUID;

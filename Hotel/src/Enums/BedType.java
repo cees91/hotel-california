@@ -1,4 +1,4 @@
-package hotel;
+package Enums;
 
 public enum BedType {
     Single,
