@@ -8,27 +8,26 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class BookingController {
-    Booking booking;
 
-    public String specifyGuestsAndDates() {
+    private Booking booking = new Booking();
+
+    public Booking getBooking() {
+        return booking;
+    }
+
+    public boolean specifyGuestsAndDates() {
 
         Scanner terminalInput = new Scanner(System.in);
-        int guests;
-        Date startDate;
-        Date endDate;
         try {
-            guests = specifyGuests(terminalInput);
-            startDate = setFromDate(terminalInput);
-            endDate = setEndDate(terminalInput);
+            this.booking.setNumberOfGuests(specifyGuests(terminalInput));
+            this.booking.setStartDate(setFromDate(terminalInput));
+            this.booking.setEndDate( setEndDate(terminalInput));
         } catch (Exception error) {
             System.out.println("Incorrect date format: " + error + ". Enter 'b' to go back.");
-            String date = terminalInput.nextLine();
-
+            terminalInput.nextLine();
+            return false;
         }
-//        this.booking = new Booking(guests, startDate, endDate);
-        String screen = "";
-        return screen;
-
+        return true;
     }
 
     private int specifyGuests(Scanner terminal) {
