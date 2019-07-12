@@ -27,13 +27,27 @@ public class Booking {
     private Date endDate;
     private Date bookingDate;
 
-    Booking(Rooms[] bookedRooms, User headBooker, Date startDate, Date endDate, Date bookingDate) {
+    // basic constructor without arguments
+    Booking() {
+        this.bookingId = UUID.randomUUID().toString();
+        this.bookingDate = new Date(); // creating a Date without specifying a date gives it the date of today
+    }
+
+    Booking(User headBooker, Date startDate, Date endDate) {
+        this.bookingId = UUID.randomUUID().toString();
+        this.headBooker = headBooker;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.bookingDate = new Date();
+    }
+
+    Booking(Rooms[] bookedRooms, User headBooker, Date startDate, Date endDate) {
         this.bookingId = UUID.randomUUID().toString();
         this.bookedRooms = bookedRooms;
         this.headBooker = headBooker;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.bookingDate = bookingDate;
+        this.bookingDate = new Date();
     }
 
     public boolean isBookingPayed() {
