@@ -2,6 +2,8 @@ package Application.models;
 
 import java.util.Date;
 import java.util.UUID;
+import Application.Enums.EBookingStatus;
+import Application.Enums.EPaymentMethod;
 
 public class Booking {
 
@@ -14,26 +16,54 @@ public class Booking {
 
     // the user that booked the room(s)
     private User headBooker;
+    private int numberOfGuests;
 
     // list of rooms that are booked
     private Rooms[] bookedRooms;
 
     // enum variables
-    private bookingStatus status;
-    private paymentMethod method;
+    private EBookingStatus bookingStatus;
+    private EPaymentMethod paymentMethod;
 
     // dates
     private Date startDate;
     private Date endDate;
     private Date bookingDate;
 
-    Booking(Rooms[] bookedRooms, User headBooker, Date startDate, Date endDate, Date bookingDate) {
+    // basic constructor without arguments
+    Booking() {
         this.bookingId = UUID.randomUUID().toString();
-        this.bookedRooms = bookedRooms;
+        this.bookingDate = new Date(); // creating a Date without specifying a date gives it the date of today
+    }
+
+    // constructor with amount of guests and start and end date
+    Booking(int numberOfGuests, Date startDate, Date endDate) {
+        this.bookingId = UUID.randomUUID().toString();
+        this.numberOfGuests = numberOfGuests;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.bookingDate = new Date();
+    }
+
+    // constructor with user, amount of guests and start and end date
+    Booking(User headBooker, int numberOfGuests, Date startDate, Date endDate) {
+        this.bookingId = UUID.randomUUID().toString();
+        this.numberOfGuests = numberOfGuests;
         this.headBooker = headBooker;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.bookingDate = bookingDate;
+        this.bookingDate = new Date();
+    }
+
+    // full constructor
+    Booking(Rooms[] bookedRooms, User headBooker, int numberOfGuests, Date startDate, Date endDate) {
+        this.bookingId = UUID.randomUUID().toString();
+        this.bookedRooms = bookedRooms;
+        this.headBooker = headBooker;
+        this.numberOfGuests = numberOfGuests;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.bookingDate = new Date();
     }
 
     public boolean isBookingPayed() {
@@ -64,20 +94,6 @@ public class Booking {
         this.price = price;
     }
 
-    public bookingStatus getBookingStatus() {
-        return this.status;
-    }
-    public void setBookingStatus(bookingStatus stat) {
-        this.status = stat;
-    }
-
-    public paymentMethod getPaymentMethod() {
-        return this.method;
-    }
-    public void setpaymentMethod(paymentMethod method) {
-        this.method = method;
-    }
-
     public double getAmountPayed() {
         return this.amountPayed;
     }
@@ -106,25 +122,21 @@ public class Booking {
         this.endDate = endDate;
     }
 
+    public EBookingStatus getBookingStatus() {
+        return this.bookingStatus;
+    }
+    public void setBookingStatus(EBookingStatus bookingStatus) {
+        this.bookingStatus = bookingStatus;
+    }
+
+    public EPaymentMethod getPaymentMethod() {
+        return this.paymentMethod;
+    }
+    public void setPaymentMethod(EPaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
     public Date getBookingDate() {
         return this.bookingDate;
     }
-    public void setBookingDate(Date bookingDate) {
-        this.bookingDate = bookingDate;
-    }
-
-    enum bookingStatus {
-        received,
-        //processed, // do we really need this?
-        accepted,
-        declined
-    }
-
-    enum paymentMethod {
-        cash,
-        creditcard,
-        debitcard,
-        alipay
-    }
-
 }
