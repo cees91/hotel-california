@@ -1,6 +1,4 @@
-package models;
-
-import models.User;
+package Application.models;
 
 public class Employee extends User {
 

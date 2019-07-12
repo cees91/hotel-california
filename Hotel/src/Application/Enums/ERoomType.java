@@ -1,6 +1,6 @@
-package Enums;
+package Application.Enums;
 
-public enum RoomType {
+public enum ERoomType {
     Single,
     Double,
     TwoDouble,

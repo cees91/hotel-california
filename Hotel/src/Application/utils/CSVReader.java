@@ -1,8 +1,8 @@
-package utils;
+package Application.utils;
 
-import Enums.BedType;
-import Enums.RoomType;
-import models.Rooms;
+import Application.Enums.EBedType;
+import Application.Enums.ERoomType;
+import Application.models.Rooms;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -25,20 +25,20 @@ public class CSVReader {
                 int lines = (int) lineCount;
                 Rooms[] csvRooms = new Rooms[lines];
                 int roomNumber;
-                RoomType roomType;
+                ERoomType roomType;
                 int adults;
                 int floor;
-                BedType bed;
+                EBedType bed;
                 boolean disabled;
                 int children;
                 while ((line = br.readLine()) != null) {
                     String[] values = line.split(";");
                     roomNumber = i + 1;
                     floor = Integer.parseInt(values[0]);
-                    roomType = RoomType.valueOf(values[1].trim());
+                    roomType = ERoomType.valueOf(values[1].trim());
                     adults = Integer.parseInt(values[2]);
                     children = Integer.parseInt(values[3]);
-                    bed = BedType.valueOf(values[4].trim()); // Single, Double bed
+                    bed = EBedType.valueOf(values[4].trim()); // Single, Double bed
                     disabled = values.length > 5 && values[5] == "yes";
                     csvRooms[i] = new Rooms(roomNumber, floor, roomType, adults, children, bed, disabled);
                     i++;

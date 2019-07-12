@@ -1,7 +1,4 @@
-package models;
-
-import models.Rooms;
-import models.User;
+package Application.models;
 
 import java.util.Date;
 import java.util.UUID;
