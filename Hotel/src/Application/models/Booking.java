@@ -31,13 +31,13 @@ public class Booking {
     private Date bookingDate;
 
     // basic constructor without arguments
-    Booking() {
+    public Booking() {
         this.bookingId = UUID.randomUUID().toString();
         this.bookingDate = new Date(); // creating a Date without specifying a date gives it the date of today
     }
 
     // constructor with amount of guests and start and end date
-    Booking(int numberOfGuests, Date startDate, Date endDate) {
+    public Booking(int numberOfGuests, Date startDate, Date endDate) {
         this.bookingId = UUID.randomUUID().toString();
         this.numberOfGuests = numberOfGuests;
         this.startDate = startDate;
@@ -46,7 +46,7 @@ public class Booking {
     }
 
     // constructor with user, amount of guests and start and end date
-    Booking(User headBooker, int numberOfGuests, Date startDate, Date endDate) {
+    public Booking(User headBooker, int numberOfGuests, Date startDate, Date endDate) {
         this.bookingId = UUID.randomUUID().toString();
         this.numberOfGuests = numberOfGuests;
         this.headBooker = headBooker;
@@ -56,7 +56,7 @@ public class Booking {
     }
 
     // full constructor
-    Booking(Rooms[] bookedRooms, User headBooker, int numberOfGuests, Date startDate, Date endDate) {
+    public Booking(Rooms[] bookedRooms, User headBooker, int numberOfGuests, Date startDate, Date endDate) {
         this.bookingId = UUID.randomUUID().toString();
         this.bookedRooms = bookedRooms;
         this.headBooker = headBooker;
