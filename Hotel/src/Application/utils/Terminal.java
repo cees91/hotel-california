@@ -3,6 +3,7 @@ package Application.utils;
 import Application.controllers.BookingController;
 import Application.controllers.RoomController;
 import Application.Enums.ERoomType;
+import Application.models.Booking;
 
 import java.util.Scanner;
 
@@ -28,6 +29,7 @@ public class Terminal {
         String newInput = terminalInput.nextLine();
         String input = previousInput != null ? previousInput + "," + newInput : newInput;
         checkKeyChoice(input, newInput, currentScreen);
+
 
     }
 
@@ -61,22 +63,22 @@ public class Terminal {
             case "1":
                 // specify date and number of people
                 // needed for later steps -> see room availability
-                boolean isSetUp = this.booking.specifyGuestsAndDates();
-                if(isSetUp) {
+                Booking newBooking = this.booking.specifyGuestsAndDates();
+                if(newBooking != null) {
                     System.out.println(input);
-                    current = this.hotel.showRoomTypes();
+                    this.hotel.showRoomTypes(newBooking);
                 }
                 break;
             case "1,1":
                 ERoomType type = ERoomType.Single;
-                boolean isEnoughRoom = this.hotel.checkRoomAvailability(type, this.booking);
-                if(isEnoughRoom){
+//                boolean isEnoughRoom = this.hotel.checkRoomAvailability(type, this.booking);
+//                if(isEnoughRoom){
                     // go to booking
-                    this.hotel.showSelectedRooms(this.booking.getBooking());
-                } else {
+//                    this.booking.saveBooking();
+//                    this.hotel.showSelectedRooms(this.booking.getBooking());
 
                     System.out.println("There are not enough rooms of this type available for the number of guests.");
-                }
+
                 break;
             case "1,2":
                 ERoomType type2 = ERoomType.Double;

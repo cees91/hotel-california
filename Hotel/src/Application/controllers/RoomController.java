@@ -5,6 +5,8 @@ import Application.models.Booking;
 import Application.models.Rooms;
 import Application.utils.CSVReader;
 
+import java.util.Scanner;
+
 public class RoomController {
     Rooms[] rooms;
 
@@ -20,21 +22,22 @@ public class RoomController {
 
     ;
 
-    public String showRoomTypes() {
+    public void showRoomTypes(Booking newBooking) {
         String types = "";
         int i = 1;
         for (ERoomType currentType : ERoomType.values()) {
             types += i + ": " + currentType.name() + "\n";
             i++;
         }
-
-        return types;
+        Scanner terminal = new Scanner(System.in);
+        System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        System.out.println(types);
+        ERoomType roomType = ERoomType.values()[Integer.parseInt(terminal.nextLine())];
+        checkRoomAvailability(roomType,newBooking);
     }
 
-    public boolean checkRoomAvailability(ERoomType type, BookingController booking) {
-        String roomList = "";
+    private void checkRoomAvailability(ERoomType type, Booking currentBooking) {
         int i = 1;
-        Booking currentBooking = booking.getBooking();
         Rooms[] rooms = new Rooms[100];
         int numberOfGuests = currentBooking.getNumberOfGuests();
         for (Rooms currentRoom : this.rooms) {
@@ -45,10 +48,7 @@ public class RoomController {
             }
         }
         currentBooking.setBookedRooms(rooms);
-        if (numberOfGuests == 0) {
-            return true;
-        }
-        return false;
+
     }
 
     public void showSelectedRooms(Booking booking) {
