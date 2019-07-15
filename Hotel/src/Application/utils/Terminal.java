@@ -65,28 +65,8 @@ public class Terminal {
                 // needed for later steps -> see room availability
                 Booking newBooking = this.booking.specifyGuestsAndDates();
                 if(newBooking != null) {
-                    System.out.println(input);
-                    this.hotel.showRoomTypes(newBooking);
+                    this.hotel.bookRooms(newBooking);
                 }
-                break;
-            case "1,1":
-                ERoomType type = ERoomType.Single;
-//                boolean isEnoughRoom = this.hotel.checkRoomAvailability(type, this.booking);
-//                if(isEnoughRoom){
-                    // go to booking
-//                    this.booking.saveBooking();
-//                    this.hotel.showSelectedRooms(this.booking.getBooking());
-
-                    System.out.println("There are not enough rooms of this type available for the number of guests.");
-
-                break;
-            case "1,2":
-                ERoomType type2 = ERoomType.Double;
-//                current = this.hotel.checkRoomAvailability(type2);
-                break;
-            case "1,3":
-                ERoomType type3 = ERoomType.TwoDouble;
-//                current = this.hotel.checkRoomAvailability(type3);
                 break;
             case "2":
                 // check booking

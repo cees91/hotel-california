@@ -15,12 +15,12 @@ import java.nio.file.Paths;
 public class CSVReader {
     public Rooms[] csvReader() {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("rooms.csv"));
+            BufferedReader br = new BufferedReader(new FileReader("./Hotel/rooms.csv"));
             String line;
 
             int i = 0;
             try {
-                Path path = Paths.get("rooms.csv");
+                Path path = Paths.get("./Hotel/rooms.csv");
                 long lineCount = Files.lines(path).count();
                 int lines = (int) lineCount;
                 Rooms[] csvRooms = new Rooms[lines];

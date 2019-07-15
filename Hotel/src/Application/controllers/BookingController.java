@@ -49,19 +49,24 @@ public class BookingController {
         return bookings.toString();
     }
 
-    public boolean specifyGuestsAndDates() {
+
+    public Booking specifyGuestsAndDates() {
 
         Scanner terminalInput = new Scanner(System.in);
+        Booking booking = new Booking();
         try {
-            this.booking.setNumberOfGuests(specifyGuests(terminalInput));
-            this.booking.setStartDate(setFromDate(terminalInput));
-            this.booking.setEndDate(setEndDate(terminalInput));
+            booking.setNumberOfGuests(specifyGuests(terminalInput));
+            booking.setEndDate( setEndDate(terminalInput));
+            booking.setStartDate(setFromDate(terminalInput));
         } catch (Exception error) {
             System.out.println("Incorrect date format: " + error + ". Enter 'b' to go back.");
             terminalInput.nextLine();
-            return false;
+            return null;
         }
-        return true;
+        return booking;
+    }
+    private void saveBooking(Booking booking){
+
     }
 
     private int specifyGuests(Scanner terminal) {

@@ -21,8 +21,17 @@ public class RoomController {
     }
 
     ;
+    public void bookRooms(Booking newBooking){
+        ERoomType roomType = showRoomTypes(newBooking);
+        boolean isAvailable = checkRoomAvailability(roomType, newBooking);
+        if(isAvailable){
+            checkLogin();
+            setUserDetails();
+            saveBooking();
+        }
 
-    public void showRoomTypes(Booking newBooking) {
+    }
+    private ERoomType showRoomTypes(Booking newBooking) {
         String types = "";
         int i = 1;
         for (ERoomType currentType : ERoomType.values()) {
@@ -33,10 +42,10 @@ public class RoomController {
         System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         System.out.println(types);
         ERoomType roomType = ERoomType.values()[Integer.parseInt(terminal.nextLine())];
-        checkRoomAvailability(roomType,newBooking);
+        return roomType;
     }
 
-    private void checkRoomAvailability(ERoomType type, Booking currentBooking) {
+    private boolean checkRoomAvailability(ERoomType type, Booking currentBooking) {
         int i = 1;
         Rooms[] rooms = new Rooms[100];
         int numberOfGuests = currentBooking.getNumberOfGuests();
@@ -48,17 +57,19 @@ public class RoomController {
             }
         }
         currentBooking.setBookedRooms(rooms);
+        if(numberOfGuests == 0){
+            return true;
+        }
+        return false;
+    }
+    private void checkLogin(){
 
     }
+    private void setUserDetails(){
 
-    public void showSelectedRooms(Booking booking) {
-        Rooms[] rooms = booking.getBookedRooms();
-        for (Rooms currentRoom : rooms) {
-            if(currentRoom != null) {
-                System.out.println("Selected rooms: " + currentRoom.getRoomNumber() + "type: " + currentRoom.getType());
-            }
+    }
+    private void saveBooking(){
 
-        }
     }
 
 }
