@@ -8,14 +8,18 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class BookingController {
-    private Booking booking = new Booking();    private Booking[] bookingsList = new Booking[100];
+    private Booking booking = new Booking();
+    private Booking[] bookingsList = new Booking[100];
 
     public Booking getBooking() {
         return booking;
     }
+
     public void createBooking() {
         bookingsList[0] = new Booking();
-    }    public String showBookings() {
+    }
+
+    public String showBookings() {
         StringBuilder bookings = new StringBuilder("Booking ID | Date booked | Booking start date | Booking end date | Booking payed \n");
         String bookingPayed;
         for(Booking currentValue: bookingsList) {
