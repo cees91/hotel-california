@@ -1,4 +1,14 @@
 .idea
+
 *.class
+
 Hotel.kotlin_module
+
 MANIFEST.MF
+
+*.iml
+
+out/*
+.idea/*
+Hotel/.idea/*
+Hotel/Hotel.iml
