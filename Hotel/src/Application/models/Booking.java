@@ -16,6 +16,15 @@ public class Booking {
 
     // the user that booked the room(s)
     private User headBooker;
+
+    public int getNumberOfGuests() {
+        return numberOfGuests;
+    }
+
+    public void setNumberOfGuests(int numberOfGuests) {
+        this.numberOfGuests = numberOfGuests;
+    }
+
     private int numberOfGuests;
 
     // list of rooms that are booked
