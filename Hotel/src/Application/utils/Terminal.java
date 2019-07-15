@@ -88,6 +88,8 @@ public class Terminal {
                 break;
             case "2":
                 // check booking
+                this.booking.createBooking();
+                System.out.println(this.booking.showBookings());
 
                 break;
             case "2,1":
