@@ -2,14 +2,15 @@ package Application.models;
 
 public class Guest extends User {
 
-    User user;
-    String phoneNumber;
-    String address;
-    String houseNumber;
-    String postcode;
-    String city;
-    String country;
-    String emailAddress;
+    private String customerId;
+    private User user;
+    private String phoneNumber;
+    private String address;
+    private String houseNumber;
+    private String postcode;
+    private String city;
+    private String country;
+
 
     public Guest(User user, String phoneNumber, String address, String houseNumber, String postcode, String city, String country, String emailAddress) {
         this.user = user;
