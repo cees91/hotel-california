@@ -1,4 +1,4 @@
-package hotel;
+package Application.models;
 
 public class Employee extends User {
 

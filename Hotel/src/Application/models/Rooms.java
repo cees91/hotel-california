@@ -1,4 +1,7 @@
-package hotel;
+package Application.models;
+
+import Application.Enums.EBedType;
+import Application.Enums.ERoomType;
 
 public class Rooms {
 
@@ -9,9 +12,8 @@ public class Rooms {
     int children;
     EBedType bedType;
     boolean isDisabled;
-
-    double price;
     boolean isAvailable;
+    double price;
 
     public Rooms(int roomNumber, int floor, ERoomType type, int adults, int children, EBedType bedType, boolean isDisabled) {
         this.roomNumber = roomNumber;
@@ -21,6 +23,7 @@ public class Rooms {
         this.children = children;
         this.bedType = bedType;
         this.isDisabled = isDisabled;
+        this.isAvailable = true;
     }
 
     public int getRoomNumber() {
