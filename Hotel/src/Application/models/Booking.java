@@ -54,7 +54,7 @@ public class Booking {
     }
 
     // constructor with user, amount of guests and start and end date
-    Booking(User headBooker, int numberOfGuests, Date startDate, Date endDate) {
+    public Booking(User headBooker, int numberOfGuests, Date startDate, Date endDate) {
         this.bookingId = UUID.randomUUID().toString();
         this.numberOfGuests = numberOfGuests;
         this.headBooker = headBooker;
@@ -64,7 +64,7 @@ public class Booking {
     }
 
     // full constructor
-    Booking(Rooms[] bookedRooms, User headBooker, int numberOfGuests, Date startDate, Date endDate) {
+    public Booking(Rooms[] bookedRooms, User headBooker, int numberOfGuests, Date startDate, Date endDate) {
         this.bookingId = UUID.randomUUID().toString();
         this.bookedRooms = bookedRooms;
         this.headBooker = headBooker;
