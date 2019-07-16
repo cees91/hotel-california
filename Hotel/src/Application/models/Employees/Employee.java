@@ -6,8 +6,13 @@ public class Employee extends User {
 
     User user;
     String employeeId;
-    String accessLevel;
+    String accessLevel; //make clear access levels
 
+    Employee() {
+
+
+
+    }
     public Employee(User user, String employeeId, String accessLevel) {
         this.user = user;
         this.employeeId = employeeId;
