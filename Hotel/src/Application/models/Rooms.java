@@ -5,15 +5,15 @@ import Application.Enums.ERoomType;
 
 public class Rooms {
 
-    int roomNumber;
-    int floor;
-    ERoomType type;
-    int adults;
-    int children;
-    EBedType bedType;
-    boolean isDisabled;
-    boolean isAvailable;
-    double price;
+    private int roomNumber;
+    private int floor;
+    private ERoomType type;
+    private int adults;
+    private int children;
+    private EBedType bedType;
+    private boolean isDisabled;
+    private boolean isAvailable;
+    private double price;
 
     public Rooms(int roomNumber, int floor, ERoomType type, int adults, int children, EBedType bedType, boolean isDisabled) {
         this.roomNumber = roomNumber;
