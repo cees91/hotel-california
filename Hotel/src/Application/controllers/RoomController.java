@@ -1,9 +1,13 @@
 package Application.controllers;
 
 import Application.Enums.ERoomType;
+import Application.Interfaces.SaveBooking;
 import Application.models.Booking;
 import Application.models.Rooms;
+import Application.models.User;
 import Application.utils.CSVReader;
+import Application.utils.CSVWriter;
+import Application.utils.DBSaver;
 
 import java.util.Scanner;
 
@@ -25,9 +29,9 @@ public class RoomController {
         ERoomType roomType = showRoomTypes(newBooking);
         boolean isAvailable = checkRoomAvailability(roomType, newBooking);
         if(isAvailable){
-            checkLogin();
-            setUserDetails();
-            saveBooking();
+//            Guest guest = checkLogin();
+            Booking completedBooking = setUserDetails(newBooking);
+            saveBooking(completedBooking,"csv");
         }
 
     }
@@ -63,13 +67,30 @@ public class RoomController {
         return false;
     }
     private void checkLogin(){
-
+//        Guest gu
     }
-    private void setUserDetails(){
-
+    private void setUserDetails(Booking booking){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("First name: ");
+        String firstName = scanner.nextLine();
+        System.out.println("Last name: ");
+        String lastName = scanner.nextLine();
+        System.out.println("Address: ");
+        String address = scanner.nextLine();
+        System.out.println("City: ");
+        String city = scanner.nextLine();
+        System.out.println("Telephone number: ");
+        String telephoneNumber = scanner.nextLine();
+//        booking.setHeadBooker();
     }
-    private void saveBooking(){
-
+    private void saveBooking(Booking booking, String type){
+        SaveBooking saveInstance;
+        if(type.equals("csv")) {
+            saveInstance = new CSVWriter();
+        } else{
+            saveInstance = new DBSaver();
+        }
+        saveInstance.saveBooking(booking);
     }
 
 }
