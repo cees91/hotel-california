@@ -18,8 +18,6 @@ public class RoomController {
         return csvRooms;
     }
 
-    ;
-
     public String showRoomTypes() {
         String types = "";
         int i = 1;
