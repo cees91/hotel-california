@@ -15,6 +15,8 @@ public class BookingController {
         return booking;
     }
 
+
+
     public boolean specifyGuestsAndDates() {
 
         Scanner terminalInput = new Scanner(System.in);

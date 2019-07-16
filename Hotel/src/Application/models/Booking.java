@@ -16,6 +16,7 @@ public class Booking {
 
     // the user that booked the room(s)
     private User headBooker;
+    private int numberOfGuests;
 
     public int getNumberOfGuests() {
         return numberOfGuests;
@@ -24,8 +25,6 @@ public class Booking {
     public void setNumberOfGuests(int numberOfGuests) {
         this.numberOfGuests = numberOfGuests;
     }
-
-    private int numberOfGuests;
 
     // list of rooms that are booked
     private Rooms[] bookedRooms;
