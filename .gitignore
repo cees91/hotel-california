@@ -12,3 +12,7 @@ out/*
 .idea/*
 Hotel/.idea/*
 Hotel/Hotel.iml
+out
+out
+artifacts
+META-INF
