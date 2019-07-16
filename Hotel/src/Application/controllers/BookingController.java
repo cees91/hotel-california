@@ -5,24 +5,36 @@ import Application.models.User;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class BookingController {
     private Booking booking;
-    private Booking[] bookingsList;
+    private List<Booking> bookingsList;
 
     public BookingController() {
         booking = new Booking();
-        bookingsList = new Booking[100];
+        bookingsList = new ArrayList<>();
     }
 
     public Booking getBooking() {
         return booking;
     }
 
-    public void createBooking() {
-        bookingsList[0] = new Booking(new User(), 5, new Date(), new Date());
+    // searches for a booking in the registered list, returns a booking if it can find one, it returns null when not
+    public Booking getBookingById(String id) {
+        for(Booking currentValue : bookingsList) {
+            if(currentValue.getBookingId().equals(id)) {
+                return currentValue;
+            }
+        }
+        return null;
+    }
+
+    public void createBooking(int numberOfGuest, User headBooker, Date startDate, Date endDate) {
+        bookingsList.add(new Booking(headBooker, numberOfGuest, startDate, endDate));
     }
 
     public String showBookings() {
