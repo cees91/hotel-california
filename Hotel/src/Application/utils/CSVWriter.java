@@ -25,8 +25,17 @@ public class CSVWriter implements SaveBooking {
             bookingColumns[3] = getDateAsString(booking.getEndDate());
             bookingColumns[4] = Integer.toString(booking.getBookedRooms().length);
             String delimiter = String.join(",", bookingColumns);
-            BufferedOutputStream bw = new BufferedOutputStream(new FileOutputStream("bookings.csv", true));
-            bw.write(delimiter.getBytes());
+            FileWriter csvWriter = new FileWriter("bookings2.csv");
+            csvWriter.append(delimiter);
+            csvWriter.append("\n");
+            csvWriter.flush();
+            csvWriter.close();
+//            for (List<String> rowData : rows) {
+//                csvWriter.append(String.join(",", rowData));
+//                csvWriter.append("\n");
+//            }
+//            BufferedOutputStream bw = new BufferedOutputStream(new FileOutputStream("./Hotel/rooms.csv", true));
+//            bw.write(delimiter.getBytes());
         } catch (IOException error) {
             System.out.println("Error reading file" + error);
         }

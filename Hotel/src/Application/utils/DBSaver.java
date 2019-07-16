@@ -5,7 +5,7 @@ import Application.models.Booking;
 
 public class DBSaver implements SaveBooking {
     @Override
-    public void saveBooking(Booking booking, String type) {
+    public void saveBooking(Booking booking) {
 
     }
 }
