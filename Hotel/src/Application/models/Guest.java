@@ -11,8 +11,8 @@ public class Guest extends User {
     private String city;
     private String country;
 
-    public Guest(String customerId, User user, String phoneNumber, String address, String houseNumber, String postcode, String city, String country) {
-        this.customerId = customerId;
+
+    public Guest(User user, String phoneNumber, String address, String houseNumber, String postcode, String city, String country, String emailAddress) {
         this.user = user;
         this.phoneNumber = phoneNumber;
         this.address = address;
@@ -20,6 +20,7 @@ public class Guest extends User {
         this.postcode = postcode;
         this.city = city;
         this.country = country;
+        this.emailAddress = emailAddress;
     }
 
     public String getPhoneNumber() {
@@ -68,5 +69,13 @@ public class Guest extends User {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 }
