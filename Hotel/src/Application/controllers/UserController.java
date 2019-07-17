@@ -1,45 +1,76 @@
 package Application.controllers;
 
+import Application.models.Employee;
+import Application.models.Guest;
 import Application.models.User;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 public class UserController {
 
-    ArrayList<User> users = new ArrayList<User>();
+    ArrayList<User> users = new ArrayList<>();
+    ArrayList<Guest> guests = GuestController.guests;
+    ArrayList<Employee> employees = EmployeeController.employees;
 
-    public String createUser(String name, String password){
-        User user = null;
-        try {
-            user = new User(name, password);
-            users.add(user);
-        }
-        catch (Exception ex) {
-            return "Error creating the user: " + ex.toString();
-        }
-        return "User succesfully created! (id = " + user.getUser_id() + ")";
 
+    public ArrayList<User> fillUserlist(ArrayList<Guest> guests, ArrayList<Employee> employees) {
+        users.addAll(guests);
+        users.addAll(employees);
+        return users;
     }
 
     public int findUserIndex(int userId) throws Exception {
-        for(int i = 0; i<users.size(); i++){
-            if(users.get(i).getUser_id() == userId){
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getUser_id() == userId) {
                 return i;
             }
         }
         throw new Exception("User not found");
     }
 
-    public String deleteUser(int userId){
+    public String deleteGuestUser(int userId) {
         try {
             users.remove(findUserIndex(userId));
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             return "Error deleting the user: " + ex.toString();
         }
         return "User succesfully deleted! (id = " + userId + ")";
 
     }
 
+    public String updateUserName(int userId, String userName) {
+        try {
+            users.get(findUserIndex(userId)).setUserName(userName);
+        } catch (Exception ex) {
+            return "Error updating the username: " + ex.toString();
+        }
+        return "Username succesfully updated! (id = " + userId + ")";
 
+    }
+
+    public void resetPassword(int userId) {
+        try {
+
+            User user = users.get(userId);
+            user.setPassword(generateRandomPassword());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String generateRandomPassword() {
+        final int LENGTH = 8;
+        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                + "abcdefghijklmnopqrstuvwxyz"
+                + "0123456789";
+        String password = new Random().ints(LENGTH, 0, chars.length())
+                .mapToObj(i -> "" + chars.charAt(i))
+                .collect(Collectors.joining());
+
+        return password;
+    }
 }

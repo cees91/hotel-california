@@ -13,6 +13,9 @@ public class Guest extends User {
     private String emailAddress;
 
 
+    public Guest() {
+    }
+
     public Guest(User user, String phoneNumber, String address, String houseNumber, String postcode, String city, String country, String emailAddress) {
         this.user = user;
         this.phoneNumber = phoneNumber;

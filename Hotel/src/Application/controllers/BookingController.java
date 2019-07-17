@@ -1,15 +1,17 @@
 package Application.controllers;
 
-import Application.Interfaces.SaveBooking;
+import Application.Interfaces.BookingSaver;
 import Application.models.Booking;
 import Application.models.Guest;
 import Application.models.User;
+
 import Application.utils.CSVReader;
 import Application.utils.CSVWriter;
 import Application.utils.DBSaver;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
+
 
 public class BookingController {
 
@@ -83,9 +85,6 @@ public class BookingController {
         }
         return booking;
     }
-    private void saveBooking(Booking booking){
-
-    }
 
     private int specifyGuests(Scanner terminal) {
         System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
@@ -116,8 +115,9 @@ public class BookingController {
     public void createAndSaveBooking(Booking booking){
         User guest = login();
         setUserDetails(booking, guest);
-        saveBooking(booking,"csv");
+        saveBooking(booking);
     }
+
     private User login(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("User name: ");
@@ -150,13 +150,8 @@ public class BookingController {
         Guest guest = new Guest(user, phoneNumber, address, houseNumber, postcode, city,country, emailAddress);
         booking.setHeadBooker(guest);
     }
-    private void saveBooking(Booking booking, String type){
-        SaveBooking saveInstance;
-        if(type.equals("csv")) {
-            saveInstance = new CSVWriter();
-        } else{
-            saveInstance = new DBSaver();
-        }
-        saveInstance.saveBooking(booking);
+    private void saveBooking(Booking booking) {
+        BookingRepository bookingRepo = BookingRepository.getInstance();
+        bookingRepo.saveBooking(booking)
     }
 }

@@ -11,9 +11,7 @@ import java.awt.print.Book;
 public class App {
 
     public static void main(String[] args) {
-        RoomController hotel = new RoomController();
-        BookingController booking = new BookingController();
-        Terminal console = new Terminal(hotel,booking);
+        Terminal console = new Terminal();
         String welcomeScreen = "Welcome to the Application, please select an option: \n" +
                 "1: Look for rooms. \n" +
                 "2: Check booking. \n" +
