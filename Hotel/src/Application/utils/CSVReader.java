@@ -16,7 +16,7 @@ public class CSVReader {
             String line;
 
             int i = 0;
-            try (BufferedReader br = new BufferedReader(file)){
+            try (BufferedReader br = new BufferedReader(file)) {
                 Path path = Paths.get("./Hotel/rooms.csv");
                 long lineCount = Files.lines(path).count();
                 int lines = (int) lineCount;

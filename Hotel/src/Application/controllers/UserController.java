@@ -1,11 +1,10 @@
 package Application.controllers;
 
-import Application.models.Employee;
+import Application.models.Employees.Employee;
 import Application.models.Guest;
 import Application.models.User;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 

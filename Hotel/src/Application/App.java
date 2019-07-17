@@ -4,6 +4,7 @@ package Application;
 import Application.controllers.BookingController;
 import Application.controllers.RoomController;
 import Application.models.Booking;
+import Application.repository.BookingRepository;
 import Application.utils.Terminal;
 
 import java.awt.print.Book;
