@@ -4,64 +4,66 @@ import Application.Interfaces.SaveBooking;
 import Application.models.Booking;
 import Application.models.Guest;
 import Application.models.User;
+import Application.utils.CSVReader;
 import Application.utils.CSVWriter;
 import Application.utils.DBSaver;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class BookingController {
-    private Booking booking;
-    private List<Booking> bookingsList;
-
-    public BookingController() {
-        booking = new Booking();
-        bookingsList = new ArrayList<>();
-    }
-
-    public Booking getBooking() {
-        return booking;
-    }
 
     // searches for a booking in the registered list, returns a booking if it can find one, it returns null when not
     public Booking getBookingById(String id) {
-        for(Booking currentValue : bookingsList) {
-            if(currentValue.getBookingId().equals(id)) {
-                return currentValue;
+        CSVReader reader = new CSVReader();
+
+        String currentDir = System.getProperty("user.dir");
+        String filePath = currentDir + "/bookings.csv";
+
+        // get the bookings from the CSV
+         ArrayList<List<String>> bookingsList = reader.CSVParser(filePath);
+
+        for(List<String> currentValue : bookingsList) {
+            // get the booking id from the CSV, should be in the first column(column 0)
+            if(currentValue.get(0) == id) {
+                return bookingFromStringList(currentValue);
             }
         }
         return null;
     }
 
-    public void createBooking(int numberOfGuest, User headBooker, Date startDate, Date endDate) {
-        bookingsList.add(new Booking(headBooker, numberOfGuest, startDate, endDate));
+    public Booking bookingFromStringList(List<String> bookingRow) {
+        Booking booking = new Booking();
+
+//        bookingColumns[0] = booking.getBookingId();
+//        bookingColumns[1] = Integer.toString(booking.getNumberOfGuests());
+//        bookingColumns[2] = getDateAsString(booking.getStartDate());
+//        bookingColumns[3] = getDateAsString(booking.getEndDate());
+//        bookingColumns[4] = Integer.toString(booking.getBookedRooms().length);
+        return booking;
     }
 
     public String showBookings() {
         StringBuilder bookings = new StringBuilder("Booking ID \t\t\t\t\t\t\t\t| Date booked \t\t\t\t\t\t|" +
                 " Booking start date \t\t\t\t| Booking end date \t\t\t\t\t| Booking payed \n");
-        String bookingPayed;
-
-        for (Booking currentValue : bookingsList) {
-            //check if position is actually occupied
-            if (currentValue == null) {
-                continue;
-            }
-
-            if (currentValue.isBookingPayed()) {
-                bookingPayed = "Yes";
-            } else {
-                bookingPayed = "No";
-            }
-
-            bookings.append(currentValue.getBookingId()).append( " \t| ").append(currentValue.getBookingDate()).append(" \t| ")
-                    .append(currentValue.getStartDate()).append(" \t| ").append(currentValue.getEndDate()).append(" \t| ")
-                    .append(bookingPayed).append("\n");
-        }
+//        String bookingPayed;
+//
+//        for (Booking currentValue : bookingsList) {
+//            //check if position is actually occupied
+//            if (currentValue == null) {
+//                continue;
+//            }
+//
+//            if (currentValue.isBookingPayed()) {
+//                bookingPayed = "Yes";
+//            } else {
+//                bookingPayed = "No";
+//            }
+//
+//            bookings.append(currentValue.getBookingId()).append( " \t| ").append(currentValue.getBookingDate()).append(" \t| ")
+//                    .append(currentValue.getStartDate()).append(" \t| ").append(currentValue.getEndDate()).append(" \t| ")
+//                    .append(bookingPayed).append("\n");
+//        }
         return bookings.toString();
     }
 
