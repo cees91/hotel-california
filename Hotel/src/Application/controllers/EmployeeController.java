@@ -10,9 +10,6 @@ import java.util.stream.Collectors;
 
 public class EmployeeController extends UserController {
 
-
-    public static ArrayList<Employee> employees;
-
     public String createEmployeeUser(User user, String employeeId){
         Employee employee = null;
         try {
