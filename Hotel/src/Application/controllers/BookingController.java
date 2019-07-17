@@ -145,7 +145,7 @@ public class BookingController {
         String emailAddress = scanner.nextLine();
         System.out.println("Telephone number: ");
         String phoneNumber = scanner.nextLine();
-        Guest guest = new Guest(user, phoneNumber, address, houseNumber, postcode, city,country, emailAddress);
+        Guest guest = new Guest(user, firstName, lastName, phoneNumber, address, houseNumber, postcode, city,country, emailAddress);
         booking.setHeadBooker(guest);
     }
     private void saveBooking(Booking booking, String type){
