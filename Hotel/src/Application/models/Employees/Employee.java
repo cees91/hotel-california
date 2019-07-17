@@ -4,9 +4,9 @@ import Application.models.User;
 
 public class Employee extends User {
 
-    User user;
-    String employeeId;
-    String accessLevel; //make clear access levels
+    private User user;
+    private String employeeId;
+    private String accessLevel; //make clear access levels
 
     Employee() {
 

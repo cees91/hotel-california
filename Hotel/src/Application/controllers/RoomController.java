@@ -6,7 +6,7 @@ import Application.models.Rooms;
 import Application.utils.CSVReader;
 
 public class RoomController {
-    Rooms[] rooms;
+    private Rooms[] rooms;
 
     public RoomController() {
         this.rooms = readCSVFile();
