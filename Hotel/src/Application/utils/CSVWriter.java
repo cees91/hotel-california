@@ -12,6 +12,10 @@ public class CSVWriter implements BookingSaver {
 
     @Override
     public void saveBooking(Booking booking){
+        String bookingLine = createColumns(booking);
+        writeSingleLineToCSV(bookingLine, "bookings.csv");
+    }
+    private String createColumns(Booking booking){
         String[] bookingColumns = new String[10];
         bookingColumns[0] = booking.getBookingId();
         bookingColumns[1] = Integer.toString(booking.getNumberOfGuests());
@@ -19,9 +23,9 @@ public class CSVWriter implements BookingSaver {
         bookingColumns[3] = getDateAsString(booking.getEndDate());
         bookingColumns[4] = Integer.toString(booking.getBookedRooms().length);
         String bookingLine = String.join(",", bookingColumns);
-        writeToCSV(bookingLine, "bookings.csv");
+        return bookingLine;
     }
-    public void writeToCSV(String bookingLine, String fileName) {
+    public void writeSingleLineToCSV(String bookingLine, String fileName) {
         try {
             FileWriter csvWriter = new FileWriter(fileName);
             csvWriter.append(bookingLine);
@@ -32,6 +36,16 @@ public class CSVWriter implements BookingSaver {
             System.out.println("Error reading file " + error);
         }
 
+    }
+    public void writeMultipleLinesToCSV(Booking[] bookingLines, String fileName) throws IOException{
+        FileWriter csvWriter = new FileWriter(fileName);
+        String currentLine;
+        for(Booking currentBooking: bookingLines){
+            currentLine = createColumns(currentBooking);
+            csvWriter.append(currentLine);
+        }
+        csvWriter.flush();
+        csvWriter.close();
     }
 
     private String getDateAsString(Date date) {

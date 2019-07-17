@@ -4,9 +4,6 @@ import Application.Interfaces.BookingSaver;
 import Application.models.Booking;
 import Application.models.Guest;
 import Application.models.User;
-import Application.utils.CSVWriter;
-import Application.utils.DBSaver;
-import Application.utils.EnvironmentSingleton;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -113,6 +110,7 @@ public class BookingController {
         setUserDetails(booking, guest);
         saveBooking(booking);
     }
+
     private User login(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("User name: ");
@@ -142,13 +140,11 @@ public class BookingController {
         String emailAddress = scanner.nextLine();
         System.out.println("Telephone number: ");
         String phoneNumber = scanner.nextLine();
-
         Guest guest = new Guest(user, phoneNumber, address, houseNumber, postcode, city,country, emailAddress);
         booking.setHeadBooker(guest);
     }
-    private void saveBooking(Booking booking){
-        EnvironmentSingleton environment = EnvironmentSingleton.getInstance();
-        BookingSaver saver = environment.saver;
-        saver.saveBooking(booking);
+    private void saveBooking(Booking booking) {
+        BookingRepository bookingRepo = BookingRepository.getInstance();
+        bookingRepo.saveBooking(booking)
     }
 }
