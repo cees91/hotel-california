@@ -1,14 +1,7 @@
 package Application;
 
 
-import Application.controllers.*;
-import Application.models.Booking;
-import Application.models.Guest;
-import Application.models.User;
 import Application.utils.Terminal;
-
-import java.awt.print.Book;
-
 public class App {
 
     public static void main(String[] args) {

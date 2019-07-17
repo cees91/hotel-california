@@ -8,6 +8,11 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Arrays;
+import java.util.List;
 
 public class CSVReader {
     public Rooms[] csvReader() {
@@ -16,7 +21,7 @@ public class CSVReader {
             String line;
 
             int i = 0;
-            try (BufferedReader br = new BufferedReader(file)){
+            try (BufferedReader br = new BufferedReader(file)) {
                 Path path = Paths.get("./Hotel/rooms.csv");
                 long lineCount = Files.lines(path).count();
                 int lines = (int) lineCount;
@@ -47,6 +52,27 @@ public class CSVReader {
             }
         } catch (FileNotFoundException e) {
             System.out.println(e);
+        }
+        return null;
+    }
+
+    public ArrayList<List<String>> CSVParser(String filename) {
+         ArrayList<List<String>> parsedFile = new ArrayList<>();
+        try {
+            Reader file = new FileReader(filename);
+            String line;
+
+            try (BufferedReader br = new BufferedReader(file)) {
+                while ((line = br.readLine()) != null) {
+                    parsedFile.add(Arrays.asList(line.split(";")));
+                }
+                return parsedFile;
+
+            } catch (IOException e) {
+                System.out.println(e.toString());
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e.toString());
         }
         return null;
     }
