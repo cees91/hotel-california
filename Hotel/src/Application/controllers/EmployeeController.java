@@ -18,8 +18,8 @@ public class EmployeeController extends UserController {
         try {
             employee = new Employee();
             employee.setEmployeeId(employeeId);
-            employee.setUserName(user.userName);
-            employee.setPassword(generateRandomPassword());
+            employee.setUserName(user.getUserName());
+            employee.setPassword(user.getPassword());
             employees.add(employee);
         }
         catch (Exception ex) {

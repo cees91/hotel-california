@@ -3,7 +3,8 @@ package Application.models;
 public class Guest extends User {
 
     private String customerId;
-    private User user;
+    public String firstName;
+    public String lastName;
     private String phoneNumber;
     private String address;
     private String houseNumber;
@@ -16,8 +17,11 @@ public class Guest extends User {
     public Guest() {
     }
 
-    public Guest(User user, String phoneNumber, String address, String houseNumber, String postcode, String city, String country, String emailAddress) {
-        this.user = user;
+    public Guest(User user, String firstName, String lastName, String phoneNumber, String address, String houseNumber, String postcode, String city, String country, String emailAddress) {
+        this.setUserName(user.getUserName());
+        this.setPassword(user.getPassword());
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.houseNumber = houseNumber;
@@ -25,6 +29,22 @@ public class Guest extends User {
         this.city = city;
         this.country = country;
         this.emailAddress = emailAddress;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPhoneNumber() {
