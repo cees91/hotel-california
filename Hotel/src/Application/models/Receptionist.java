@@ -1,7 +1,5 @@
-package Application.models.Employees;
+package Application.models;
 
-import Application.models.Booking;
-import Application.models.Rooms;
 
 public class Receptionist extends Employee {
 
