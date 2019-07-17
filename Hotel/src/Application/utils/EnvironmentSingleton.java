@@ -1,7 +1,6 @@
 package Application.utils;
 
 import Application.Interfaces.BookingSaver;
-import Application.models.Booking;
 
 public class EnvironmentSingleton {
     private static EnvironmentSingleton instance = null;
