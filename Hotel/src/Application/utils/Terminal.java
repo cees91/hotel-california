@@ -2,24 +2,26 @@ package Application.utils;
 
 import Application.controllers.BookingController;
 import Application.controllers.RoomController;
-import Application.Enums.ERoomType;
+import Application.controllers.UserController;
 import Application.models.Booking;
+import Application.models.User;
 
 import java.util.Scanner;
 
 public class Terminal {
-
     private final String welcomeScreen = "Welcome to the Application, please select an option: \n" +
             "1: Look for rooms. \n" +
             "2: Check booking. \n" +
             "3: Log in. \n" +
             "4: Contact information. \n";
-    private RoomController hotel;
-    private BookingController booking;
+    private RoomController roomController;
+    private BookingController bookingController;
+    private UserController userController;
 
-    public Terminal(RoomController hotel, BookingController booking){
-        this.hotel = hotel;
-        this.booking = booking;
+    public Terminal(){
+        this.roomController = new RoomController();
+        this.bookingController = new BookingController();
+        this.userController = new UserController();
     }
 
     public void startTerminal(String previousInput, String currentScreen) {
@@ -63,16 +65,16 @@ public class Terminal {
             case "1":
                 // specify date and number of people
                 // needed for later steps -> see room availability
-                Booking newBooking = this.booking.specifyGuestsAndDates();
+                Booking newBooking = this.bookingController.specifyGuestsAndDates();
                 if(newBooking != null) {
-                    newBooking = this.hotel.bookRooms(newBooking);
-                    this.booking.createAndSaveBooking(newBooking);
+                    newBooking = this.roomController.bookRooms(newBooking);
+                    this.bookingController.createAndSaveBooking(newBooking);
                 }
                 break;
             case "2":
                 // check booking
 //                this.booking.createBooking();
-                System.out.println(this.booking.showBookings());
+                System.out.println(this.bookingController.showBookings());
 
                 break;
             case "2,1":
