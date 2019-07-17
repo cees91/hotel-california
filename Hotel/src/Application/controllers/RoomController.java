@@ -1,12 +1,20 @@
 package Application.controllers;
 
 import Application.Enums.ERoomType;
+import Application.Interfaces.SaveBooking;
 import Application.models.Booking;
+import Application.models.Guest;
 import Application.models.Rooms;
+import Application.models.User;
 import Application.utils.CSVReader;
+import Application.utils.CSVWriter;
+import Application.utils.DBSaver;
+
+import java.io.Console;
+import java.util.Scanner;
 
 public class RoomController {
-    Rooms[] rooms;
+    private Rooms[] rooms;
 
     public RoomController() {
         this.rooms = readCSVFile();
@@ -18,21 +26,31 @@ public class RoomController {
         return csvRooms;
     }
 
-    public String showRoomTypes() {
+    ;
+    public Booking bookRooms(Booking newBooking){
+        ERoomType roomType = showRoomTypes(newBooking);
+        boolean isAvailable = checkRoomAvailability(roomType, newBooking);
+        if(isAvailable){
+            return newBooking;
+        }
+        return null;
+    }
+    private ERoomType showRoomTypes(Booking newBooking) {
         String types = "";
         int i = 1;
         for (ERoomType currentType : ERoomType.values()) {
             types += i + ": " + currentType.name() + "\n";
             i++;
         }
-
-        return types;
+        Scanner terminal = new Scanner(System.in);
+        System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        System.out.println(types);
+        ERoomType roomType = ERoomType.values()[Integer.parseInt(terminal.nextLine())];
+        return roomType;
     }
 
-    public boolean checkRoomAvailability(ERoomType type, BookingController booking) {
-        String roomList = "";
+    private boolean checkRoomAvailability(ERoomType type, Booking currentBooking) {
         int i = 1;
-        Booking currentBooking = booking.getBooking();
         Rooms[] rooms = new Rooms[100];
         int numberOfGuests = currentBooking.getNumberOfGuests();
         for (Rooms currentRoom : this.rooms) {
@@ -43,20 +61,11 @@ public class RoomController {
             }
         }
         currentBooking.setBookedRooms(rooms);
-        if (numberOfGuests == 0) {
+        if(numberOfGuests == 0){
             return true;
         }
         return false;
     }
 
-    public void showSelectedRooms(Booking booking) {
-        Rooms[] rooms = booking.getBookedRooms();
-        for (Rooms currentRoom : rooms) {
-            if(currentRoom != null) {
-                System.out.println("Selected rooms: " + currentRoom.getRoomNumber() + "type: " + currentRoom.getType());
-            }
-
-        }
-    }
 
 }

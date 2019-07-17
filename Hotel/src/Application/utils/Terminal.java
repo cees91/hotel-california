@@ -3,6 +3,7 @@ package Application.utils;
 import Application.controllers.BookingController;
 import Application.controllers.RoomController;
 import Application.Enums.ERoomType;
+import Application.models.Booking;
 
 import java.util.Scanner;
 
@@ -28,6 +29,7 @@ public class Terminal {
         String newInput = terminalInput.nextLine();
         String input = previousInput != null ? previousInput + "," + newInput : newInput;
         checkKeyChoice(input, newInput, currentScreen);
+
 
     }
 
@@ -61,34 +63,15 @@ public class Terminal {
             case "1":
                 // specify date and number of people
                 // needed for later steps -> see room availability
-                boolean isSetUp = this.booking.specifyGuestsAndDates();
-                if(isSetUp) {
-                    System.out.println(input);
-                    current = this.hotel.showRoomTypes();
+                Booking newBooking = this.booking.specifyGuestsAndDates();
+                if(newBooking != null) {
+                    newBooking = this.hotel.bookRooms(newBooking);
+                    this.booking.createAndSaveBooking(newBooking);
                 }
-                break;
-            case "1,1":
-                ERoomType type = ERoomType.Single;
-                boolean isEnoughRoom = this.hotel.checkRoomAvailability(type, this.booking);
-                if(isEnoughRoom){
-                    // go to booking
-                    this.hotel.showSelectedRooms(this.booking.getBooking());
-                } else {
-
-                    System.out.println("There are not enough rooms of this type available for the number of guests.");
-                }
-                break;
-            case "1,2":
-                ERoomType type2 = ERoomType.Double;
-//                current = this.hotel.checkRoomAvailability(type2);
-                break;
-            case "1,3":
-                ERoomType type3 = ERoomType.TwoDouble;
-//                current = this.hotel.checkRoomAvailability(type3);
                 break;
             case "2":
                 // check booking
-                this.booking.createBooking();
+//                this.booking.createBooking();
                 System.out.println(this.booking.showBookings());
 
                 break;

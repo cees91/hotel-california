@@ -2,10 +2,10 @@ package Application.models;
 
 public class User {
 
-    public int user_id = 1;
-    public String userName;
+    private int user_id = 1;
+    private String userName;
     private String password;
-    public static int count = 1;
+    private static int count = 1;
 
     public User() {
     }
