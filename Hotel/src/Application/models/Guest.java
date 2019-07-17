@@ -10,6 +10,7 @@ public class Guest extends User {
     private String postcode;
     private String city;
     private String country;
+    private String emailAddress;
 
 
     public Guest(User user, String phoneNumber, String address, String houseNumber, String postcode, String city, String country, String emailAddress) {
