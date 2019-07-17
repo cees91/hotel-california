@@ -14,10 +14,10 @@ public class Login {
     public void Login(User user) {
 
         boolean login = true;
+        String usedUsername = user.getUserName();
+        String usedPassword = user.getPassword();
 
-        while (login) {
-            String usedUsername = user.getUserName();
-            String usedPassword = user.getPassword();
+        do {
             System.out.println("Enter your username: ");
             String inputUsername = scanner.next();
             System.out.println("Enter your password: ");
@@ -30,6 +30,7 @@ public class Login {
             } else {
                 System.out.println("These credentials are not correct, please try again.");
             }
-        }
+
+        } while (login);
     }
 }
