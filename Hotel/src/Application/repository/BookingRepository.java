@@ -24,14 +24,12 @@ public class BookingRepository {
                 System.out.println("boop");
             }
         }
+    }
 
-//        public static BookingRepository getInstance() {
-//            if (instance == null) {
-//                instance = new BookingRepository();
-//            }
-//            return instance;
-//        }
-
-
+    public static BookingRepository getInstance() {
+        if (instance == null) {
+            instance = new BookingRepository();
+        }
+        return instance;
     }
 }
