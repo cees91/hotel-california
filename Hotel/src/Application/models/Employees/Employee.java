@@ -1,22 +1,16 @@
-package Application.models.Employees;
-
-import Application.models.User;
+package Application.models;
 
 public class Employee extends User {
 
-    private User user;
-    private String employeeId;
-    private String accessLevel; //make clear access levels
+    User user;
+    String employeeId;
 
-    Employee() {
-
-
-
+    public Employee() {
     }
-    public Employee(User user, String employeeId, String accessLevel) {
+
+    public Employee(User user, String employeeId) {
         this.user = user;
         this.employeeId = employeeId;
-        this.accessLevel = accessLevel;
     }
 
     public String getEmployeeId() {
@@ -27,11 +21,4 @@ public class Employee extends User {
         this.employeeId = employeeId;
     }
 
-    public String getAccessLevel() {
-        return accessLevel;
-    }
-
-    public void setAccessLevel(String accessLevel) {
-        this.accessLevel = accessLevel;
-    }
 }
