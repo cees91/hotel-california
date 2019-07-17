@@ -1,12 +1,9 @@
 package Application.controllers;
 
-import Application.models.Employee;
-import Application.models.Guest;
+import Application.models.Employees.Employee;
 import Application.models.User;
 
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.stream.Collectors;
 
 public class EmployeeController extends UserController {
 
@@ -15,8 +12,8 @@ public class EmployeeController extends UserController {
         try {
             employee = new Employee();
             employee.setEmployeeId(employeeId);
-            employee.setUserName(user.userName);
-            employee.setPassword(generateRandomPassword());
+            employee.setUserName(user.getUserName());
+            employee.setPassword(user.getPassword());
             employees.add(employee);
         }
         catch (Exception ex) {

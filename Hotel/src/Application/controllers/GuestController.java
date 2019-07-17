@@ -16,13 +16,14 @@ public class GuestController extends UserController {
         try {
             guest = new Guest();
             guest.setAddress(address);
+            guest.setHouseNumber(houseNumber);
             guest.setCity(city);
             guest.setCountry(country);
             guest.setEmailAddress(emailAddress);
             guest.setPhoneNumber(phoneNumber);
             guest.setPostcode(postcode);
-            guest.setUserName(user.userName);
-            guest.setPassword(generateRandomPassword());
+            guest.setUserName(user.getUserName());
+            guest.setPassword(user.getPassword());
             guests.add(guest);
         }
         catch (Exception ex) {
