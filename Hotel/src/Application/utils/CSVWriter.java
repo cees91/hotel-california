@@ -5,9 +5,6 @@ import Application.models.Booking;
 import Application.models.User;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,14 +27,8 @@ public class CSVWriter implements SaveBooking {
             csvWriter.append("\n");
             csvWriter.flush();
             csvWriter.close();
-//            for (List<String> rowData : rows) {
-//                csvWriter.append(String.join(",", rowData));
-//                csvWriter.append("\n");
-//            }
-//            BufferedOutputStream bw = new BufferedOutputStream(new FileOutputStream("./Hotel/rooms.csv", true));
-//            bw.write(delimiter.getBytes());
         } catch (IOException error) {
-            System.out.println("Error reading file" + error);
+            System.out.println("Error reading file " + error);
         }
 
     }

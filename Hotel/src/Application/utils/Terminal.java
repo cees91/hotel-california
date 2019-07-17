@@ -65,12 +65,13 @@ public class Terminal {
                 // needed for later steps -> see room availability
                 Booking newBooking = this.booking.specifyGuestsAndDates();
                 if(newBooking != null) {
-                    this.hotel.bookRooms(newBooking);
+                    newBooking = this.hotel.bookRooms(newBooking);
+                    this.booking.createAndSaveBooking(newBooking);
                 }
                 break;
             case "2":
                 // check booking
-                this.booking.createBooking();
+//                this.booking.createBooking();
                 System.out.println(this.booking.showBookings());
 
                 break;

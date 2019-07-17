@@ -4,10 +4,7 @@ import Application.Enums.EBedType;
 import Application.Enums.ERoomType;
 import Application.models.Rooms;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,11 +12,11 @@ import java.nio.file.Paths;
 public class CSVReader {
     public Rooms[] csvReader() {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("./Hotel/rooms.csv"));
+            Reader file = new FileReader("./Hotel/rooms.csv");
             String line;
 
             int i = 0;
-            try {
+            try (BufferedReader br = new BufferedReader(file)){
                 Path path = Paths.get("./Hotel/rooms.csv");
                 long lineCount = Files.lines(path).count();
                 int lines = (int) lineCount;

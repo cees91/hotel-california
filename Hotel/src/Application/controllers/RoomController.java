@@ -27,15 +27,13 @@ public class RoomController {
     }
 
     ;
-    public void bookRooms(Booking newBooking){
+    public Booking bookRooms(Booking newBooking){
         ERoomType roomType = showRoomTypes(newBooking);
         boolean isAvailable = checkRoomAvailability(roomType, newBooking);
         if(isAvailable){
-            User guest = login();
-            setUserDetails(newBooking, guest);
-            saveBooking(newBooking,"csv");
+            return newBooking;
         }
-
+        return null;
     }
     private ERoomType showRoomTypes(Booking newBooking) {
         String types = "";
@@ -68,46 +66,6 @@ public class RoomController {
         }
         return false;
     }
-    private User login(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("User name: ");
-        String userName = scanner.nextLine();
-        System.out.println("Enter password: ");
-        String enteredPassword = scanner.nextLine();
-        User user = new User(userName, enteredPassword);
-        return user;
-    }
-    private void setUserDetails(Booking booking, User user){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("First name: ");
-        String firstName = scanner.nextLine();
-        System.out.println("Last name: ");
-        String lastName = scanner.nextLine();
-        System.out.println("Address: ");
-        String address = scanner.nextLine();
-        System.out.println("houseNumber: ");
-        String houseNumber = scanner.nextLine();
-        System.out.println("Postcode: ");
-        String postcode = scanner.nextLine();
-        System.out.println("City: ");
-        String city = scanner.nextLine();
-        System.out.println("country: ");
-        String country = scanner.nextLine();
-        System.out.println("Email address: ");
-        String emailAddress = scanner.nextLine();
-        System.out.println("Telephone number: ");
-        String phoneNumber = scanner.nextLine();
-        Guest guest = new Guest(user, phoneNumber, address, houseNumber, postcode, city,country, emailAddress);
-        booking.setHeadBooker(guest);
-    }
-    private void saveBooking(Booking booking, String type){
-        SaveBooking saveInstance;
-        if(type.equals("csv")) {
-            saveInstance = new CSVWriter();
-        } else{
-            saveInstance = new DBSaver();
-        }
-        saveInstance.saveBooking(booking);
-    }
+
 
 }
