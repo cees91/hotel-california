@@ -1,16 +1,10 @@
 package Application.controllers;
 
 import Application.Enums.ERoomType;
-import Application.Interfaces.SaveBooking;
 import Application.models.Booking;
-import Application.models.Guest;
 import Application.models.Rooms;
-import Application.models.User;
 import Application.utils.CSVReader;
-import Application.utils.CSVWriter;
-import Application.utils.DBSaver;
 
-import java.io.Console;
 import java.util.Scanner;
 
 public class RoomController {

@@ -1,15 +1,14 @@
 package Application.utils;
 
-import Application.Interfaces.SaveBooking;
+import Application.Interfaces.BookingSaver;
 import Application.models.Booking;
-import Application.models.User;
 
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class CSVWriter implements SaveBooking {
+public class CSVWriter implements BookingSaver {
 
     @Override
     public void saveBooking(Booking booking) {
