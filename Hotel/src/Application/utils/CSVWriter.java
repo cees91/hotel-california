@@ -72,6 +72,8 @@ public class CSVWriter implements BookingSaver {
             for (Booking currentBooking : bookingLines) {
                 currentLine = createColumns(currentBooking);
                 csvWriter.append(currentLine);
+                csvWriter.append("\n");
+
             }
             csvWriter.flush();
             csvWriter.close();
