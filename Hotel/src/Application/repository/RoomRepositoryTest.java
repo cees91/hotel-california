@@ -3,9 +3,8 @@ package Application.repository;
 import Application.models.Room;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.*;
 
 public class RoomRepositoryTest {
 
@@ -29,8 +28,10 @@ public class RoomRepositoryTest {
     }
 
     @Test
-    public void freeRoom() {
-
+    public void freeRoom() throws Exception {
+        RoomRepository repo = RoomRepository.getInstance();
+        Room roomToFree = repo.freeRoom(60);
+        assertTrue(roomToFree.isAvailable());
 
     }
 

@@ -47,9 +47,16 @@ public class RoomRepository {
         return room;
     }
 
-    public void freeRoom(int roomNumber){
+    public Room freeRoom(int roomNumber) throws Exception{
         Room room = filterRooms(roomNumber);
-        room.setAvailable(true);
+        try{
+            if (!room.isAvailable()) {
+                room.setAvailable(true);
+            }
+        } catch (Exception e) {
+            throw new Exception("Room is unavailable for booking");
+        }
+        return room;
     }
 
     public void cleanRoom(int roomNumber) {
