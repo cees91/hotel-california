@@ -18,8 +18,6 @@ public class BookingRepository {
 
     }
 
-
-
     public void deleteBooking(Booking bookingToDelete) {
         String bookingIdToDelete = bookingToDelete.getBookingId();
         for (Booking singleBooking : bookings) {
