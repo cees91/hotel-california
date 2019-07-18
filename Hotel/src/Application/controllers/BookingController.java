@@ -5,6 +5,7 @@ import Application.models.Booking;
 import Application.models.Guest;
 import Application.models.User;
 
+import Application.repository.BookingRepository;
 import Application.utils.CSVReader;
 import Application.utils.CSVWriter;
 import Application.utils.DBSaver;
@@ -148,10 +149,12 @@ public class BookingController {
         System.out.println("Telephone number: ");
         String phoneNumber = scanner.nextLine();
         Guest guest = new Guest();
+        guest.setLastName(lastName);
+        guest.setEmailAddress(emailAddress);
         booking.setHeadBooker(guest);
     }
     private void saveBooking(Booking booking) {
-//        BookingRepository bookingRepo = BookingRepository.getInstance();
-//        bookingRepo.saveBooking(booking)
+        BookingRepository bookingRepo = BookingRepository.getInstance();
+        bookingRepo.create(booking);
     }
 }
