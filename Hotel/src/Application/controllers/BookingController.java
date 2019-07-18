@@ -5,6 +5,8 @@ import Application.models.Booking;
 import Application.models.Guest;
 import Application.models.User;
 
+import Application.repository.BookingRepository;
+
 import Application.utils.CSVReader;
 import Application.utils.CSVWriter;
 import Application.utils.DBSaver;
@@ -13,59 +15,92 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 
+/**
+ * This is the Booking controller.
+ * It can be used to find bookings, show a list of bookings and update values in the bookings.
+ */
 public class BookingController {
+    /**
+     * searches for a booking in the registered list
+     * @param name the Username of the headbooker
+     * @return the {@link Booking} or null, returns a booking when successful, null when not
+     * TODO don't return null, throw an exception
+     */
+    public Booking getBookingFromRepository(String name) {
+        List<Booking> bookingsList = BookingRepository.getInstance().getBookings();
 
-    // searches for a booking in the registered list, returns a booking if it can find one, it returns null when not
-    public Booking getBookingById(String id) {
-        CSVReader reader = new CSVReader();
-
-        String currentDir = System.getProperty("user.dir");
-        String filePath = currentDir + "/bookings.csv";
-
-        // get the bookings from the CSV
-         ArrayList<List<String>> bookingsList = reader.CSVParser(filePath);
-
-        for(List<String> currentValue : bookingsList) {
-            // get the booking id from the CSV, should be in the first column(column 0)
-            if(currentValue.get(0) == id) {
-                return bookingFromStringList(currentValue);
+        for(Booking currentValue : bookingsList) {
+            // see if the given name matches the booking name
+            if(currentValue.getHeadBooker().getUserName().equals(name)) {
+                return currentValue;
             }
         }
         return null;
     }
 
-    public Booking bookingFromStringList(List<String> bookingRow) {
-        Booking booking = new Booking();
+    /**
+     * searches for a booking in the registered list
+     * @param id the ID of the headbooker
+     * @return the {@link Booking} or null, returns a booking when successful, null when not
+     * TODO don't return null, throw an exception
+     */
+    public Booking getBookingFromRepository(String id) {
+        List<Booking> bookingsList = BookingRepository.getInstance().getBookings();
 
-//        bookingColumns[0] = booking.getBookingId();
-//        bookingColumns[1] = Integer.toString(booking.getNumberOfGuests());
-//        bookingColumns[2] = getDateAsString(booking.getStartDate());
-//        bookingColumns[3] = getDateAsString(booking.getEndDate());
-//        bookingColumns[4] = Integer.toString(booking.getBookedRooms().length);
-        return booking;
+        for(Booking currentValue : bookingsList) {
+            // get the booking id from the CSV, should be in the first column(column 0)
+            if(currentValue.getBookingId().equals(id)) {
+                return currentValue;
+            }
+        }
+        return null;
     }
 
+    /**
+     * searches for a booking in the registered list
+     * @param email the email of the headbooker
+     * @return the {@link Booking} or null, returns a booking when successful, null when not
+     * TODO don't return null, throw an exception
+     */
+    public Booking getBookingFromRepository(String email) {
+        List<Booking> bookingsList = BookingRepository.getInstance().getBookings();
+
+        for(Booking currentValue : bookingsList) {
+            // get the email of the user from the current booking, and check if it's the same
+            if(((Guest)currentValue.getHeadBooker()).getEmailAddress().equals(email)) {
+                return currentValue;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * returns the entire list of bookings in a nice string format
+     * @return a formatted string containing all the bookings
+     */
     public String showBookings() {
         StringBuilder bookings = new StringBuilder("Booking ID \t\t\t\t\t\t\t\t| Date booked \t\t\t\t\t\t|" +
                 " Booking start date \t\t\t\t| Booking end date \t\t\t\t\t| Booking payed \n");
-//        String bookingPayed;
-//
-//        for (Booking currentValue : bookingsList) {
-//            //check if position is actually occupied
-//            if (currentValue == null) {
-//                continue;
-//            }
-//
-//            if (currentValue.isBookingPayed()) {
-//                bookingPayed = "Yes";
-//            } else {
-//                bookingPayed = "No";
-//            }
-//
-//            bookings.append(currentValue.getBookingId()).append( " \t| ").append(currentValue.getBookingDate()).append(" \t| ")
-//                    .append(currentValue.getStartDate()).append(" \t| ").append(currentValue.getEndDate()).append(" \t| ")
-//                    .append(bookingPayed).append("\n");
-//        }
+        List<Booking> bookingsList = BookingRepository.getInstance().getBookings();
+
+        String bookingPayed;
+
+        for (Booking currentValue : bookingsList) {
+            //check if position is actually occupied
+            if (currentValue == null) {
+                continue;
+            }
+
+            if (currentValue.isBookingPayed()) {
+                bookingPayed = "Yes";
+            } else {
+                bookingPayed = "No";
+            }
+
+            bookings.append(currentValue.getBookingId()).append( " \t| ").append(currentValue.getBookingDate()).append(" \t| ")
+                    .append(currentValue.getStartDate()).append(" \t| ").append(currentValue.getEndDate()).append(" \t| ")
+                    .append(bookingPayed).append("\n");
+        }
         return bookings.toString();
     }
 
@@ -147,11 +182,12 @@ public class BookingController {
         String emailAddress = scanner.nextLine();
         System.out.println("Telephone number: ");
         String phoneNumber = scanner.nextLine();
-        Guest guest = new Guest(user, phoneNumber, address, houseNumber, postcode, city,country, emailAddress);
+
+        Guest guest = new Guest(user, firstName, lastName, phoneNumber, address, houseNumber, postcode, city, country, emailAddress);
         booking.setHeadBooker(guest);
     }
     private void saveBooking(Booking booking) {
         BookingRepository bookingRepo = BookingRepository.getInstance();
-        bookingRepo.saveBooking(booking)
+        bookingRepo.saveBooking(booking);
     }
 }

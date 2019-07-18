@@ -2,21 +2,23 @@ package Application.controllers;
 
 import Application.Enums.ERoomType;
 import Application.models.Booking;
-import Application.models.Rooms;
+import Application.models.Room;
 import Application.utils.CSVReader;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RoomController {
-    private Rooms[] rooms;
+    private ArrayList<Room> rooms;
 
     public RoomController() {
         this.rooms = readCSVFile();
     }
 
-    private Rooms[] readCSVFile() {
+    private ArrayList<Room> readCSVFile() {
         CSVReader reader = new CSVReader();
-        Rooms[] csvRooms = reader.csvReader();
+        ArrayList<Room> csvRooms = reader.csvReader();
         return csvRooms;
     }
 
@@ -45,9 +47,9 @@ public class RoomController {
 
     private boolean checkRoomAvailability(ERoomType type, Booking currentBooking) {
         int i = 1;
-        Rooms[] rooms = new Rooms[100];
+        Room[] rooms = new Room[100];
         int numberOfGuests = currentBooking.getNumberOfGuests();
-        for (Rooms currentRoom : this.rooms) {
+        for (Room currentRoom : this.rooms) {
             if (currentRoom.isAvailable() && currentRoom.getType() == type && numberOfGuests > 0) {
                 numberOfGuests -= currentRoom.getAdults();
                 rooms[i] = currentRoom;

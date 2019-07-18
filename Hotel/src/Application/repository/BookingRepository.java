@@ -2,26 +2,29 @@ package Application.repository;
 
 import Application.models.Booking;
 
+import Application.utils.CSVReader;
+
 import java.util.ArrayList;
 
 
 public class BookingRepository {
 
     private static BookingRepository instance = null;
-    private ArrayList<Booking> bookedRooms = new ArrayList<>();
+    //maybe check rooms that are not available?
+    private ArrayList<Booking> bookings = new ArrayList<>();
 
     private BookingRepository() {
-        //Read the CSV and bind data to bookedRooms
+        //can't use CSV reader because it only returns rooms, not bookings
 
     }
 
-    //CRUD operations for bookings
+
 
     public void deleteBooking(Booking bookingToDelete) {
-        String bookingId = bookingToDelete.getBookingId();
-        for (Booking singleBooking : bookedRooms) {
-            if (singleBooking.getBookingId() == bookingId) {
-                System.out.println("boop");
+        String bookingIdToDelete = bookingToDelete.getBookingId();
+        for (Booking singleBooking : bookings) {
+            if (singleBooking.getBookingId().equals(bookingIdToDelete)) {
+                //do some CSV writing magic
             }
         }
     }
@@ -31,5 +34,9 @@ public class BookingRepository {
             instance = new BookingRepository();
         }
         return instance;
+    }
+
+    public void saveBooking(Booking booking) {
+
     }
 }

@@ -33,5 +33,4 @@ public class GuestController extends UserController {
 
     }
 
-
 }

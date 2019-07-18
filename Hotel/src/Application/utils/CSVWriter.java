@@ -35,7 +35,6 @@ public class CSVWriter implements BookingSaver {
         } catch (IOException error) {
             System.out.println("Error reading file " + error);
         }
-
     }
     public void writeMultipleLinesToCSV(Booking[] bookingLines, String fileName) throws IOException{
         FileWriter csvWriter = new FileWriter(fileName);
