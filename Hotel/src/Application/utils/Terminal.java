@@ -2,23 +2,26 @@ package Application.utils;
 
 import Application.controllers.BookingController;
 import Application.controllers.RoomController;
-import Application.Enums.ERoomType;
+import Application.controllers.UserController;
+import Application.models.Booking;
+import Application.models.User;
 
 import java.util.Scanner;
 
 public class Terminal {
-
     private final String welcomeScreen = "Welcome to the Application, please select an option: \n" +
             "1: Look for rooms. \n" +
             "2: Check booking. \n" +
             "3: Log in. \n" +
             "4: Contact information. \n";
-    private RoomController hotel;
-    private BookingController booking;
+    private RoomController roomController;
+    private BookingController bookingController;
+    private UserController userController;
 
-    public Terminal(RoomController hotel, BookingController booking){
-        this.hotel = hotel;
-        this.booking = booking;
+    public Terminal(){
+        this.roomController = new RoomController();
+        this.bookingController = new BookingController();
+        this.userController = new UserController();
     }
 
     public void startTerminal(String previousInput, String currentScreen) {
@@ -28,6 +31,7 @@ public class Terminal {
         String newInput = terminalInput.nextLine();
         String input = previousInput != null ? previousInput + "," + newInput : newInput;
         checkKeyChoice(input, newInput, currentScreen);
+
 
     }
 
@@ -61,35 +65,16 @@ public class Terminal {
             case "1":
                 // specify date and number of people
                 // needed for later steps -> see room availability
-                boolean isSetUp = this.booking.specifyGuestsAndDates();
-                if(isSetUp) {
-                    System.out.println(input);
-                    current = this.hotel.showRoomTypes();
+                Booking newBooking = this.bookingController.specifyGuestsAndDates();
+                if(newBooking != null) {
+                    newBooking = this.roomController.bookRooms(newBooking);
+                    this.bookingController.createAndSaveBooking(newBooking);
                 }
-                break;
-            case "1,1":
-                ERoomType type = ERoomType.Single;
-                boolean isEnoughRoom = this.hotel.checkRoomAvailability(type, this.booking);
-                if(isEnoughRoom){
-                    // go to booking
-                    this.hotel.showSelectedRooms(this.booking.getBooking());
-                } else {
-
-                    System.out.println("There are not enough rooms of this type available for the number of guests.");
-                }
-                break;
-            case "1,2":
-                ERoomType type2 = ERoomType.Double;
-//                current = this.hotel.checkRoomAvailability(type2);
-                break;
-            case "1,3":
-                ERoomType type3 = ERoomType.TwoDouble;
-//                current = this.hotel.checkRoomAvailability(type3);
                 break;
             case "2":
                 // check booking
-                this.booking.createBooking();
-                System.out.println(this.booking.showBookings());
+//                this.booking.createBooking();
+                System.out.println(this.bookingController.showBookings());
 
                 break;
             case "2,1":
