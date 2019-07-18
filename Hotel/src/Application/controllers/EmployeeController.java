@@ -1,6 +1,6 @@
 package Application.controllers;
 
-import Application.models.Employees.Employee;
+import Application.models.Employee;
 import Application.models.User;
 
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ public class EmployeeController extends UserController {
 
     public static ArrayList<Employee> employees;
 
-    public String createEmployeeUser(User user, String employeeId){
+    public String createEmployee(User user, String employeeId){
         Employee employee = null;
         try {
             employee = new Employee();
@@ -22,7 +22,7 @@ public class EmployeeController extends UserController {
         catch (Exception ex) {
             return "Error creating the user: " + ex.toString();
         }
-        return "User succesfully created! (id = " + employee.getUser_id() + ")";
+        return "User succesfully created! (id = " + employee.getUserId() + ")";
 
     }
 
