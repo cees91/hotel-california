@@ -4,22 +4,35 @@ import Application.models.Booking;
 import Application.models.Guest;
 import Application.utils.EnvironmentSingleton;
 
+import Application.utils.CSVReader;
+
 import java.util.ArrayList;
 
 
 public class BookingRepository {
 
     private static BookingRepository instance = null;
+<<<<<<< HEAD
+    //maybe check rooms that are not available?
+    private ArrayList<Booking> bookings = new ArrayList<>();
+=======
     private ArrayList<Booking> bookedRooms = new ArrayList<>();
     EnvironmentSingleton singleton = EnvironmentSingleton.getInstance();
+>>>>>>> 939cb62cf3f7c1d204f7a4ddf00953325d4eea74
 
     private BookingRepository() {
-        //Read the CSV and bind data to bookedRooms
+        //can't use CSV reader because it only returns rooms, not bookings
 
     }
 
-    //CRUD operations for bookings
 
+<<<<<<< HEAD
+    public void deleteBooking(Booking bookingToDelete) {
+        String bookingIdToDelete = bookingToDelete.getBookingId();
+        for (Booking singleBooking : bookings) {
+            if (singleBooking.getBookingId().equals(bookingIdToDelete)) {
+                //do some CSV writing magic
+=======
     /**
      * Finds and returns an arraylist of bookings. Can have null
      *
@@ -36,6 +49,7 @@ public class BookingRepository {
                     .orElse(null);
             if (foundBooking != null) {
                 bookingsList.add(foundBooking);                                 // If 'findAny' then return found
+>>>>>>> 939cb62cf3f7c1d204f7a4ddf00953325d4eea74
             }
         }
         return bookingsList;
@@ -95,5 +109,9 @@ public class BookingRepository {
             instance = new BookingRepository();
         }
         return instance;
+    }
+
+    public void saveBooking(Booking booking) {
+
     }
 }
