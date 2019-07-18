@@ -5,18 +5,20 @@ import Application.models.Booking;
 import Application.models.Room;
 import Application.utils.CSVReader;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RoomController {
-    private Room[] rooms;
+    private ArrayList<Room> rooms;
 
     public RoomController() {
         this.rooms = readCSVFile();
     }
 
-    private Room[] readCSVFile() {
+    private ArrayList<Room> readCSVFile() {
         CSVReader reader = new CSVReader();
-        Room[] csvRooms = reader.csvReader();
+        ArrayList<Room> csvRooms = reader.csvReader();
         return csvRooms;
     }
 

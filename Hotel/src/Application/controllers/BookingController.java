@@ -149,8 +149,10 @@ public class BookingController {
         String emailAddress = scanner.nextLine();
         System.out.println("Telephone number: ");
         String phoneNumber = scanner.nextLine();
-        Guest guest = new Guest(user, phoneNumber, address, houseNumber, postcode, city,country, emailAddress);
-        booking.setHeadBooker(guest);
+
+        // FIXME: guest cosntructor doesn't work anymore
+        //Guest guest = new Guest(user, phoneNumber, address, houseNumber, postcode, city,country, emailAddress);
+        //booking.setHeadBooker(guest);
     }
     private void saveBooking(Booking booking) {
         BookingRepository bookingRepo = BookingRepository.getInstance();

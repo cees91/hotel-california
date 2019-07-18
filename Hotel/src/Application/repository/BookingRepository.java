@@ -35,4 +35,8 @@ public class BookingRepository {
         }
         return instance;
     }
+
+    public void saveBooking(Booking booking) {
+
+    }
 }
