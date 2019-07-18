@@ -14,7 +14,7 @@ public class EmployeeController extends UserController {
             employee.setEmployeeId(employeeId);
             employee.setUserName(user.getUserName());
             employee.setPassword(user.getPassword());
-            employees.add(employee);
+//            employee.add(employee);
         }
         catch (Exception ex) {
             return "Error creating the user: " + ex.toString();

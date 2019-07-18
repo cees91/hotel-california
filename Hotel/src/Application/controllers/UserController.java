@@ -12,6 +12,7 @@ public class UserController {
 
     ArrayList<User> users = new ArrayList<>();
     ArrayList<Guest> guests = GuestController.guests;
+
     ArrayList<Employee> employees = new ArrayList<>();
 
 

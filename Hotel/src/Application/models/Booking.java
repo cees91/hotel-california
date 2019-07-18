@@ -15,7 +15,7 @@ public class Booking {
     private double amountPayed;
 
     // the user that booked the room(s)
-    private User headBooker;
+    private Guest headBooker;
 
     public int getNumberOfGuests() {
         return numberOfGuests;
@@ -55,7 +55,7 @@ public class Booking {
     }
 
     // constructor with user, amount of guests and start and end date
-    public Booking(User headBooker, int numberOfGuests, Date startDate, Date endDate) {
+    public Booking(Guest headBooker, int numberOfGuests, Date startDate, Date endDate) {
         this.bookingId = UUID.randomUUID().toString();
         this.numberOfGuests = numberOfGuests;
         this.headBooker = headBooker;
@@ -65,7 +65,8 @@ public class Booking {
     }
 
     // full constructor
-    public Booking(Room[] bookedRooms, User headBooker, int numberOfGuests, Date startDate, Date endDate) {
+
+    public Booking(Room[] bookedRooms, Guest headBooker, int numberOfGuests, Date startDate, Date endDate) {
         this.bookingId = UUID.randomUUID().toString();
         this.bookedRooms = bookedRooms;
         this.headBooker = headBooker;
@@ -89,10 +90,10 @@ public class Booking {
         this.bookingId = bookingId;
     }
 
-    public User getHeadBooker() {
+    public Guest getHeadBooker() {
         return this.headBooker;
     }
-    public void setHeadBooker(User headBooker) {
+    public void setHeadBooker(Guest headBooker) {
         this.headBooker = headBooker;
     }
 
