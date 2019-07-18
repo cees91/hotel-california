@@ -54,7 +54,7 @@ public class CSVReader {
         return null;
     }
 
-    public ArrayList<List<String>> CSVParser(String filename) {
+    public ArrayList<List<String>> CSVToArrayList(String filename) {
         ArrayList<List<String>> parsedFile = new ArrayList<>();
         try {
             Reader file = new FileReader(filename);
