@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CSVReader {
-    public Rooms[] csvReader() {
+    public ArrayList<Rooms> csvReader() {
         try {
             Reader file = new FileReader("./Hotel/rooms.csv");
             String line;
@@ -25,7 +25,7 @@ public class CSVReader {
                 Path path = Paths.get("./Hotel/rooms.csv");
                 long lineCount = Files.lines(path).count();
                 int lines = (int) lineCount;
-                Rooms[] csvRooms = new Rooms[lines];
+                ArrayList<Rooms> csvRooms = new ArrayList<>();
                 int roomNumber;
                 ERoomType roomType;
                 int adults;
@@ -42,7 +42,7 @@ public class CSVReader {
                     children = Integer.parseInt(values[3]);
                     bed = EBedType.valueOf(values[4].trim()); // Single, Double bed
                     disabled = values.length > 5 && values[5] == "yes";
-                    csvRooms[i] = new Rooms(roomNumber, floor, roomType, adults, children, bed, disabled);
+                    csvRooms.add(new Rooms(roomNumber, floor, roomType, adults, children, bed, disabled));
                     i++;
                 }
                 return csvRooms;
