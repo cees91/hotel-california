@@ -1,6 +1,8 @@
 package Application.repository;
 
 import Application.models.Booking;
+import Application.models.Guest;
+import Application.utils.EnvironmentSingleton;
 
 import java.util.ArrayList;
 
@@ -9,6 +11,7 @@ public class BookingRepository {
 
     private static BookingRepository instance = null;
     private ArrayList<Booking> bookedRooms = new ArrayList<>();
+    EnvironmentSingleton singleton = EnvironmentSingleton.getInstance();
 
     private BookingRepository() {
         //Read the CSV and bind data to bookedRooms
@@ -19,10 +22,11 @@ public class BookingRepository {
 
     /**
      * Finds and returns an arraylist of bookings. Can have null
+     *
      * @param bookings
      * @return ArrayList of bookings
      */
-    private ArrayList<Booking> findBookings(ArrayList<Booking> bookings){
+    private ArrayList<Booking> findBookings(ArrayList<Booking> bookings) {
         ArrayList<Booking> bookingsList = new ArrayList<>();
         Booking foundBooking = null;
         for (Booking currentBooking : this.bookedRooms) {
@@ -30,7 +34,7 @@ public class BookingRepository {
                     .filter(x -> currentBooking.getBookingId().equals(x.getBookingId()))        // we want "jack" only
                     .findAny()
                     .orElse(null);
-            if(foundBooking != null) {
+            if (foundBooking != null) {
                 bookingsList.add(foundBooking);                                 // If 'findAny' then return found
             }
         }
@@ -38,44 +42,54 @@ public class BookingRepository {
     }
 
     /**
-     * Finds a single booking in the booking repo by UUID
-     * @param booking Booking object, should have a UUID
-     * @return A single booking
+     * Finds a single booking
+     * @param lastName
+     * @param id
+     * @return
      */
-    private Booking findBooking(Booking booking){
+    private Booking findBooking(String lastName, String id) {
         Booking foundBooking = null;
-        for(Booking currentBooking: this.bookedRooms){
-            if(currentBooking.getBookingId().equals(booking.getBookingId())){
+        for (Booking currentBooking : this.bookedRooms) {
+            if (currentBooking.getHeadBooker().lastName.equals(lastName) || currentBooking.getBookingId().equals(id)) {
                 foundBooking = currentBooking;
                 break;
             }
         }
         return foundBooking;
     }
-    public Booking findSingleBooking(Booking booking){
-        Booking foundBooking = findBooking(booking);
+
+    /**
+     * Finds and returns a single booking object
+     * @param name name on the booking
+     * @param id id of the booking
+     * @return booking object
+     */
+    public Booking findSingleBooking(String name, String id) {
+        Booking foundBooking = findBooking(name,id);
         return foundBooking;
     }
-    public ArrayList<Booking> findMultipleBookings(ArrayList<Booking> bookings){
+
+    public ArrayList<Booking> findMultipleBookings(ArrayList<Booking> bookings) {
         ArrayList<Booking> foundBookings = findBookings(bookings);
         return foundBookings;
     }
-     public void deleteBooking(Booking bookingToDelete) {
-        String bookingId = bookingToDelete.getBookingId();
-        this.bookedRooms.remove(findBooking(bookingToDelete));
+
+
+    public void deleteBooking(String name, String id) {
+        this.bookedRooms.remove(findBooking(name,id));
+    }
+    public void writeBookings(){
+        singleton.saver.saveBookings(this.bookedRooms);
     }
 
-
-    public void addBooking(Booking bookingToAdd){
-        this.bookedRooms.add(bookingToAdd);
-
+    public void addBooking(Booking booking) {
+        this.bookedRooms.add(booking);
     }
-    public void confirmBooking(Booking booking){
 
-    }
-    public ArrayList<Booking> getBookings(){
+    public ArrayList<Booking> getBookings() {
         return this.bookedRooms;
     }
+
     public static BookingRepository getInstance() {
         if (instance == null) {
             instance = new BookingRepository();
