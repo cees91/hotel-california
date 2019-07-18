@@ -9,6 +9,8 @@ import Application.utils.CSVReader;
 import Application.utils.CSVWriter;
 import Application.utils.DBSaver;
 
+import Application.repository.BookingRepository;
+
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -152,6 +154,6 @@ public class BookingController {
     }
     private void saveBooking(Booking booking) {
         BookingRepository bookingRepo = BookingRepository.getInstance();
-        bookingRepo.saveBooking(booking)
+        bookingRepo.saveBooking(booking);
     }
 }

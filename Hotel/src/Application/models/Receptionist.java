@@ -3,7 +3,7 @@ package Application.models;
 
 public class Receptionist extends Employee {
 
-    private Rooms[] availableRooms;
+    private Room[] availableRooms;
 
     public void getBookedRooms(){
 

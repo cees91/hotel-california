@@ -2,28 +2,24 @@ package Application.repository;
 
 import Application.models.Booking;
 
-import java.lang.reflect.Array;
+import Application.utils.CSVReader;
+
 import java.util.ArrayList;
 
 
 public class BookingRepository {
 
     private static BookingRepository instance = null;
+    //maybe check rooms that are not available?
     private ArrayList<Booking> bookings = new ArrayList<>();
 
     private BookingRepository() {
-        //Read the CSV and bind data to bookings
+        //can't use CSV reader because it only returns rooms, not bookings
 
     }
 
-    //CRUD operations for bookings
-
-    //CREATE booking
-
-    //UPDATE booking
 
 
-    //DELETE booking
     public void deleteBooking(Booking bookingToDelete) {
         String bookingIdToDelete = bookingToDelete.getBookingId();
         for (Booking singleBooking : bookings) {

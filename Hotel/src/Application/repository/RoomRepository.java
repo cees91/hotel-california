@@ -1,22 +1,22 @@
 package Application.repository;
 
-import Application.models.Rooms;
+import Application.models.Room;
 import Application.utils.CSVReader;
 
 import java.util.ArrayList;
 
 public class RoomRepository {
     private static RoomRepository instance = null;
-    private ArrayList<Rooms> rooms;
+    private ArrayList<Room> rooms;
 
     private RoomRepository() {
         CSVReader reader = new CSVReader();
         this.rooms = reader.csvReader();
     }
-    private Rooms filterRooms(int roomNumber){
-        Rooms room = null;
+    private Room filterRooms(int roomNumber){
+        Room room = null;
 
-        for (Rooms currentRoom : this.rooms) {
+        for (Room currentRoom : this.rooms) {
             if (currentRoom.getRoomNumber() == (roomNumber)) {
                 room = currentRoom;
                 break;
@@ -24,12 +24,12 @@ public class RoomRepository {
         }
         return room;
     }
-    public ArrayList<Rooms> getRooms() {
+    public ArrayList<Room> getRooms() {
         return this.rooms;
     }
 
-    public Rooms findRoom(int roomNumber) throws Exception {
-        Rooms room = filterRooms(roomNumber);
+    public Room findRoom(int roomNumber) throws Exception {
+        Room room = filterRooms(roomNumber);
         if (room != null) {
             return room;
         } else {
@@ -37,16 +37,16 @@ public class RoomRepository {
         }
     }
     public void bookRoom(int roomNumber) {
-        Rooms room = filterRooms(roomNumber);
+        Room room = filterRooms(roomNumber);
         room.setAvailable(false);
     }
     public void freeRoom(int roomNumber){
-        Rooms room = filterRooms(roomNumber);
+        Room room = filterRooms(roomNumber);
         room.setAvailable(true);
     }
 
     public void cleanRoom(int roomNumber) {
-        Rooms room = filterRooms(roomNumber);
+        Room room = filterRooms(roomNumber);
         // room needs a clean getter and setter!
     }
 

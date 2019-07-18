@@ -3,7 +3,7 @@ package Application.models;
 import Application.Enums.EBedType;
 import Application.Enums.ERoomType;
 
-public class Rooms {
+public class Room {
 
     private int roomNumber;
     private int floor;
@@ -15,7 +15,7 @@ public class Rooms {
     private boolean isAvailable;
     private double price;
 
-    public Rooms(int roomNumber, int floor, ERoomType type, int adults, int children, EBedType bedType, boolean isDisabled) {
+    public Room(int roomNumber, int floor, ERoomType type, int adults, int children, EBedType bedType, boolean isDisabled) {
         this.roomNumber = roomNumber;
         this.floor = floor;
         this.type = type;

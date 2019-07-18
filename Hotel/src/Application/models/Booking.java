@@ -28,7 +28,7 @@ public class Booking {
     private int numberOfGuests;
 
     // list of rooms that are booked
-    private Rooms[] bookedRooms;
+    private Room[] bookedRooms;
 
     // enum variables
     private EBookingStatus bookingStatus;
@@ -65,7 +65,7 @@ public class Booking {
     }
 
     // full constructor
-    public Booking(Rooms[] bookedRooms, User headBooker, int numberOfGuests, Date startDate, Date endDate) {
+    public Booking(Room[] bookedRooms, User headBooker, int numberOfGuests, Date startDate, Date endDate) {
         this.bookingId = UUID.randomUUID().toString();
         this.bookedRooms = bookedRooms;
         this.headBooker = headBooker;
@@ -110,10 +110,10 @@ public class Booking {
         this.amountPayed = amountPayed;
     }
 
-    public Rooms[] getBookedRooms() {
+    public Room[] getBookedRooms() {
         return this.bookedRooms;
     }
-    public void setBookedRooms(Rooms[] bookedRooms) {
+    public void setBookedRooms(Room[] bookedRooms) {
         this.bookedRooms = bookedRooms;
     }
 
