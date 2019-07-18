@@ -15,12 +15,11 @@ import java.util.List;
 public class CSVReader {
     public ArrayList<Room> csvReader() {
         try {
-            Reader file = new FileReader("./Hotel/rooms.csv");
+            Reader file = new FileReader("rooms.csv");
             String line;
-
             int i = 0;
             try (BufferedReader br = new BufferedReader(file)) {
-                Path path = Paths.get("./Hotel/rooms.csv");
+                Path path = Paths.get("rooms.csv");
                 long lineCount = Files.lines(path).count();
                 int lines = (int) lineCount;
                 ArrayList<Room> csvRooms = new ArrayList<>();
@@ -39,17 +38,17 @@ public class CSVReader {
                     adults = Integer.parseInt(values[2]);
                     children = Integer.parseInt(values[3]);
                     bed = EBedType.valueOf(values[4].trim()); // Single, Double bed
-                    disabled = values.length > 5 && values[5] == "yes";
+                    disabled = values.length > 5 && values[5].equals("yes");
                     csvRooms.add(new Room(roomNumber, floor, roomType, adults, children, bed, disabled));
                     i++;
                 }
                 return csvRooms;
 
             } catch (IOException e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
         } catch (FileNotFoundException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
         return null;
     }

@@ -8,9 +8,9 @@ import java.util.ArrayList;
 public class EmployeeController extends UserController {
 
     public String createEmployeeUser(User user, String employeeId){
-        Employee employee = null;
+        Employee employee;
         try {
-            employee = new Employee();
+            employee = new Employee(user, "100");
             employee.setEmployeeId(employeeId);
             employee.setUserName(user.getUserName());
             employee.setPassword(user.getPassword());

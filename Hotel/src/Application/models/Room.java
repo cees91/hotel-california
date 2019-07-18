@@ -15,6 +15,9 @@ public class Room {
     private boolean isAvailable;
     private double price;
 
+    //default constructor for testing purposes
+    public Room() { }
+
     public Room(int roomNumber, int floor, ERoomType type, int adults, int children, EBedType bedType, boolean isDisabled) {
         this.roomNumber = roomNumber;
         this.floor = floor;
