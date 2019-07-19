@@ -2,37 +2,27 @@ package Application.repository;
 
 import Application.models.Booking;
 import Application.models.Guest;
+import Application.utils.CSVReader;
 import Application.utils.EnvironmentSingleton;
 
-import Application.utils.CSVReader;
-
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class BookingRepository {
 
     private static BookingRepository instance = null;
-<<<<<<< HEAD
-    //maybe check rooms that are not available?
-    private ArrayList<Booking> bookings = new ArrayList<>();
-=======
     private ArrayList<Booking> bookedRooms = new ArrayList<>();
     EnvironmentSingleton singleton = EnvironmentSingleton.getInstance();
->>>>>>> 939cb62cf3f7c1d204f7a4ddf00953325d4eea74
 
     private BookingRepository() {
-        //can't use CSV reader because it only returns rooms, not bookings
+        //Read the CSV and bind data to bookedRooms
+
 
     }
 
+    //CRUD operations for bookings
 
-<<<<<<< HEAD
-    public void deleteBooking(Booking bookingToDelete) {
-        String bookingIdToDelete = bookingToDelete.getBookingId();
-        for (Booking singleBooking : bookings) {
-            if (singleBooking.getBookingId().equals(bookingIdToDelete)) {
-                //do some CSV writing magic
-=======
     /**
      * Finds and returns an arraylist of bookings. Can have null
      *
@@ -43,13 +33,12 @@ public class BookingRepository {
         ArrayList<Booking> bookingsList = new ArrayList<>();
         Booking foundBooking = null;
         for (Booking currentBooking : this.bookedRooms) {
-            foundBooking = bookings.stream()                        // Convert to steam
-                    .filter(x -> currentBooking.getBookingId().equals(x.getBookingId()))        // we want "jack" only
+            foundBooking = bookings.stream()
+                    .filter(x -> currentBooking.getBookingId().equals(x.getBookingId()))
                     .findAny()
                     .orElse(null);
             if (foundBooking != null) {
-                bookingsList.add(foundBooking);                                 // If 'findAny' then return found
->>>>>>> 939cb62cf3f7c1d204f7a4ddf00953325d4eea74
+                bookingsList.add(foundBooking);
             }
         }
         return bookingsList;
@@ -65,13 +54,19 @@ public class BookingRepository {
         Booking foundBooking = null;
         for (Booking currentBooking : this.bookedRooms) {
             if (currentBooking.getHeadBooker().lastName.equals(lastName) || currentBooking.getBookingId().equals(id)) {
-                foundBooking = currentBooking;
+                foundBooking =  currentBooking;
                 break;
             }
         }
         return foundBooking;
     }
-
+    private void findAndUpdate(String lastName, String id, Booking booking){
+        for(Booking currentBooking: this.bookedRooms) {
+            if (currentBooking.getHeadBooker().lastName.equals(lastName) || currentBooking.getBookingId().equals(id)) {
+                currentBooking = booking;
+            }
+        }
+    }
     /**
      * Finds and returns a single booking object
      * @param name name on the booking
@@ -88,17 +83,19 @@ public class BookingRepository {
         return foundBookings;
     }
 
+    public void create(Booking booking) {
+        this.bookedRooms.add(booking);
+    }
+    public void update(Booking booking){
+        String name = booking.getHeadBooker().lastName;
+        String id = booking.getBookingId();
+        findAndUpdate(name,id,booking);
+    }
 
     public void deleteBooking(String name, String id) {
         this.bookedRooms.remove(findBooking(name,id));
     }
-    public void writeBookings(){
-        singleton.saver.saveBookings(this.bookedRooms);
-    }
 
-    public void addBooking(Booking booking) {
-        this.bookedRooms.add(booking);
-    }
 
     public ArrayList<Booking> getBookings() {
         return this.bookedRooms;
@@ -109,9 +106,5 @@ public class BookingRepository {
             instance = new BookingRepository();
         }
         return instance;
-    }
-
-    public void saveBooking(Booking booking) {
-
     }
 }

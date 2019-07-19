@@ -33,42 +33,6 @@ public class BookingController {
     }
 
     /**
-     * searches for a booking in the registered list
-     * @param id the ID of the headbooker
-     * @return the {@link Booking} or null, returns a booking when successful, null when not
-     * TODO don't return null, throw an exception
-     */
-    public Booking getBookingFromRepository(String id) {
-        List<Booking> bookingsList = BookingRepository.getInstance().getBookings();
-
-        for(Booking currentValue : bookingsList) {
-            // get the booking id from the CSV, should be in the first column(column 0)
-            if(currentValue.getBookingId().equals(id)) {
-                return currentValue;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * searches for a booking in the registered list
-     * @param email the email of the headbooker
-     * @return the {@link Booking} or null, returns a booking when successful, null when not
-     * TODO don't return null, throw an exception
-     */
-    public Booking getBookingFromRepository(String email) {
-        List<Booking> bookingsList = BookingRepository.getInstance().getBookings();
-
-        for(Booking currentValue : bookingsList) {
-            // get the email of the user from the current booking, and check if it's the same
-            if(((Guest)currentValue.getHeadBooker()).getEmailAddress().equals(email)) {
-                return currentValue;
-            }
-        }
-        return null;
-    }
-
-    /**
      * returns the entire list of bookings in a nice string format
      * @return a formatted string containing all the bookings
      */
@@ -181,6 +145,6 @@ public class BookingController {
     }
     private void saveBooking(Booking booking) {
         BookingRepository bookingRepo = BookingRepository.getInstance();
-        bookingRepo.saveBooking(booking);
+        bookingRepo.create(booking);
     }
 }
