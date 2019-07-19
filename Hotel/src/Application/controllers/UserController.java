@@ -1,8 +1,9 @@
 package Application.controllers;
 
-import Application.models.Employees.Employee;
+import Application.models.Employee;
 import Application.models.Guest;
 import Application.models.User;
+import Application.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -22,18 +23,13 @@ public class UserController {
         return users;
     }
 
-    public int findUserIndex(int userId) throws Exception {
-        for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getUser_id() == userId) {
-                return i;
-            }
-        }
-        throw new Exception("User not found");
+    public int findUser(int userId) throws Exception {
+        return UserRepository.getInstance().findUserIndexById(userId);
     }
 
-    public String deleteGuestUser(int userId) {
+    public String deleteUser(int userId) {
         try {
-            users.remove(findUserIndex(userId));
+            UserRepository.getInstance().remove(userId);
         } catch (Exception ex) {
             return "Error deleting the user: " + ex.toString();
         }
@@ -41,22 +37,19 @@ public class UserController {
 
     }
 
-    public String updateUserName(int userId, String userName) {
-        try {
-            users.get(findUserIndex(userId)).setUserName(userName);
-        } catch (Exception ex) {
-            return "Error updating the username: " + ex.toString();
-        }
-        return "Username succesfully updated! (id = " + userId + ")";
-
-    }
+//    public String updateUserName(User user) {
+//        try {
+//            UserRepository.getInstance().updateUser(user);
+//        } catch (Exception ex) {
+//            return "Error updating the username: " + ex.toString();
+//        }
+//        return "Username succesfully updated!";
+//
+//    }
 
     public void resetPassword(int userId) {
         try {
-
-            User user = users.get(userId);
-            user.setPassword(generateRandomPassword());
-
+            UserRepository.getInstance().resetPassword(userId);
         } catch (Exception e) {
             e.printStackTrace();
         }
