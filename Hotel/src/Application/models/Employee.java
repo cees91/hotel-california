@@ -1,17 +1,16 @@
-package Application.models.Employees;
+package Application.models;
 
 import Application.models.User;
 
 public class Employee extends User {
 
-    User user;
-    String employeeId;
-
-    public Employee() {
-    }
+    private User user;
+    private String employeeId;
 
     public Employee(User user, String employeeId) {
-        this.user = user;
+        this.setUserName(user.getUserName());
+        this.setPassword(user.getPassword());
+        this.setType("employee");
         this.employeeId = employeeId;
     }
 

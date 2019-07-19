@@ -15,7 +15,6 @@ public class RoomRepository {
     }
     private Room filterRooms(int roomNumber){
         Room room = null;
-
         for (Room currentRoom : this.rooms) {
             if (currentRoom.getRoomNumber() == (roomNumber)) {
                 room = currentRoom;
@@ -36,13 +35,28 @@ public class RoomRepository {
             throw new Exception("Room not found!");
         }
     }
-    public void bookRoom(int roomNumber) {
+    public Room bookRoom(int roomNumber) throws Exception {
         Room room = filterRooms(roomNumber);
-        room.setAvailable(false);
+        try{
+            if (room.isAvailable()) {
+                room.setAvailable(false);
+            }
+        } catch (Exception e) {
+            throw new Exception("Room is unavailable for booking");
+        }
+        return room;
     }
-    public void freeRoom(int roomNumber){
+
+    public Room freeRoom(int roomNumber) throws Exception{
         Room room = filterRooms(roomNumber);
-        room.setAvailable(true);
+        try{
+            if (!room.isAvailable()) {
+                room.setAvailable(true);
+            }
+        } catch (Exception e) {
+            throw new Exception("Room is unavailable for booking");
+        }
+        return room;
     }
 
     public void cleanRoom(int roomNumber) {

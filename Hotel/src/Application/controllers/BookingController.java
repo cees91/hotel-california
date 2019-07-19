@@ -1,19 +1,13 @@
 package Application.controllers;
 
-import Application.Interfaces.BookingSaver;
 import Application.models.Booking;
 import Application.models.Guest;
 import Application.models.User;
 
 import Application.repository.BookingRepository;
 
-import Application.utils.CSVReader;
-import Application.utils.CSVWriter;
-import Application.utils.DBSaver;
-
 import java.text.SimpleDateFormat;
 import java.util.*;
-
 
 /**
  * This is the Booking controller.
@@ -32,42 +26,6 @@ public class BookingController {
         for(Booking currentValue : bookingsList) {
             // see if the given name matches the booking name
             if(currentValue.getHeadBooker().getUserName().equals(name)) {
-                return currentValue;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * searches for a booking in the registered list
-     * @param id the ID of the headbooker
-     * @return the {@link Booking} or null, returns a booking when successful, null when not
-     * TODO don't return null, throw an exception
-     */
-    public Booking getBookingFromRepository(String id) {
-        List<Booking> bookingsList = BookingRepository.getInstance().getBookings();
-
-        for(Booking currentValue : bookingsList) {
-            // get the booking id from the CSV, should be in the first column(column 0)
-            if(currentValue.getBookingId().equals(id)) {
-                return currentValue;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * searches for a booking in the registered list
-     * @param email the email of the headbooker
-     * @return the {@link Booking} or null, returns a booking when successful, null when not
-     * TODO don't return null, throw an exception
-     */
-    public Booking getBookingFromRepository(String email) {
-        List<Booking> bookingsList = BookingRepository.getInstance().getBookings();
-
-        for(Booking currentValue : bookingsList) {
-            // get the email of the user from the current booking, and check if it's the same
-            if(((Guest)currentValue.getHeadBooker()).getEmailAddress().equals(email)) {
                 return currentValue;
             }
         }
@@ -159,7 +117,7 @@ public class BookingController {
         String userName = scanner.nextLine();
         System.out.println("Enter password: ");
         String enteredPassword = scanner.nextLine();
-        User user = new User(userName, enteredPassword);
+        User user = new User();
         return user;
     }
     private void setUserDetails(Booking booking, User user){
@@ -182,12 +140,11 @@ public class BookingController {
         String emailAddress = scanner.nextLine();
         System.out.println("Telephone number: ");
         String phoneNumber = scanner.nextLine();
-
         Guest guest = new Guest(user, firstName, lastName, phoneNumber, address, houseNumber, postcode, city, country, emailAddress);
         booking.setHeadBooker(guest);
     }
     private void saveBooking(Booking booking) {
         BookingRepository bookingRepo = BookingRepository.getInstance();
-        bookingRepo.saveBooking(booking);
+        bookingRepo.create(booking);
     }
 }
