@@ -1,6 +1,7 @@
-package Application.repository;
+package applicationTest.repoTests;
 
 import Application.models.Room;
+import Application.repository.RoomRepository;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;

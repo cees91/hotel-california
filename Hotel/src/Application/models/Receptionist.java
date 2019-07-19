@@ -2,7 +2,7 @@ package Application.models;
 
 
 
-public class Receptionist extends Application.models.Employees.Employee {
+public class Receptionist extends Application.models.Employee {
 
     private Room[] availableRooms;
 
