@@ -17,7 +17,4 @@ public class GuestController extends UserController {
     }
 
     // update guest account
-
-
-
 }

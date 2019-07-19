@@ -4,11 +4,8 @@ import Application.models.User;
 
 public class Employee extends User {
 
-    User user;
-    String employeeId;
-
-    public Employee() {
-    }
+    private User user;
+    private String employeeId;
 
     public Employee(User user, String employeeId) {
         this.setUserName(user.getUserName());

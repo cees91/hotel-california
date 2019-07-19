@@ -4,8 +4,10 @@ import Application.Interfaces.BookingSaver;
 import Application.models.Booking;
 
 import java.io.*;
+import java.nio.Buffer;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class CSVWriter implements BookingSaver {
@@ -15,13 +17,42 @@ public class CSVWriter implements BookingSaver {
         String bookingLine = createColumns(booking);
         writeSingleLineToCSV(bookingLine, "bookings.csv");
     }
+    public void removeBooking(int index){
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("bookings.csv"));
+            ArrayList<String> csvLines = new ArrayList<>();
+            String line = "";
+            int iterator = 0;
+            try {
+                FileWriter csvWriter = new FileWriter("bookings.csv");
+                while ((line = br.readLine()) != null) {
+                    line = br.readLine();
+                    if (iterator != index) {
+                        csvWriter.append(line);
+                        iterator++;
+                    } else {
+                        iterator++;
+                    }
+                }
+                csvWriter.flush();
+                csvWriter.close();
+            }catch(IOException e){
+                System.out.println(e);
+            }
+        }catch(FileNotFoundException error){
+            System.out.println(error);
+        }
+
+    }
     private String createColumns(Booking booking){
-        String[] bookingColumns = new String[10];
+        String[] bookingColumns = new String[7];
         bookingColumns[0] = booking.getBookingId();
         bookingColumns[1] = Integer.toString(booking.getNumberOfGuests());
         bookingColumns[2] = getDateAsString(booking.getStartDate());
         bookingColumns[3] = getDateAsString(booking.getEndDate());
         bookingColumns[4] = Integer.toString(booking.getBookedRooms().length);
+        bookingColumns[5] = booking.getHeadBooker().getLastName();
+        bookingColumns[6] = booking.getHeadBooker().getEmailAddress();
         String bookingLine = String.join(",", bookingColumns);
         return bookingLine;
     }
@@ -35,17 +66,22 @@ public class CSVWriter implements BookingSaver {
         } catch (IOException error) {
             System.out.println("Error reading file " + error);
         }
-
     }
-    public void writeMultipleLinesToCSV(Booking[] bookingLines, String fileName) throws IOException{
-        FileWriter csvWriter = new FileWriter(fileName);
-        String currentLine;
-        for(Booking currentBooking: bookingLines){
-            currentLine = createColumns(currentBooking);
-            csvWriter.append(currentLine);
+    public void saveBookings(ArrayList<Booking> bookingLines){
+        try {
+            FileWriter csvWriter = new FileWriter("bookings.csv");
+            String currentLine;
+            for (Booking currentBooking : bookingLines) {
+                currentLine = createColumns(currentBooking);
+                csvWriter.append(currentLine);
+                csvWriter.append("\n");
+
+            }
+            csvWriter.flush();
+            csvWriter.close();
+        }catch(IOException error){
+            System.out.println(error);
         }
-        csvWriter.flush();
-        csvWriter.close();
     }
 
     private String getDateAsString(Date date) {

@@ -6,6 +6,8 @@ public class User {
     private String userName;
     private String password;
     private static int count = 1;
+
+    // FIXME: should be an enum. -Joris
     private String type;
 
     public User() {

@@ -30,7 +30,7 @@ public class CSVReaderTest {
         expected.add(temp2);
         expected.add(temp3);
 
-        result = reader.CSVParser(filePath);
+        result = reader.CSVToArrayList(filePath);
         System.out.println(expected);
         System.out.println(result);
         assertEquals(expected,result);
